@@ -4,7 +4,7 @@ from util.data_handling import import_csv_as_df, export_df_as_parquet
 
 # data paths for persistence
 data_directory = '../data/'
-data_preprocessing_output_path = os.path.join(data_directory, 'processed')
+data_preprocessing_output_path = os.path.join(data_directory, 'pre-processed')
 etfs_data_path = os.path.join('raw', 'etfs')
 stocks_data_path = os.path.join('raw', 'stocks')
 

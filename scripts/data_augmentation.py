@@ -6,7 +6,7 @@ from util.data_handling import import_parquet_as_df, export_df_as_parquet
 # data paths for persistence
 from data_preprocessing import data_preprocessing_output_path
 data_directory = '../data/'
-data_augmentation_output_path = os.path.join(data_directory, 'feature_engineering')
+data_augmentation_output_path = os.path.join(data_directory, 'training', 'augmented_data')
 
 # log setups
 logger = logging.getLogger(__name__)
@@ -116,7 +116,7 @@ def save_data(dataframe, file_name):
         None
     """
     try:
-        export_df_as_parquet(dataframe, 'processed', file_name)
+        export_df_as_parquet(dataframe, 'training', file_name)
         logger.info(f"Data successfully saved to {file_name}.parquet")
     except Exception as e:
         logger.error(f"Failed to save {file_name}.parquet. Error message: {str(e)}")
