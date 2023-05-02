@@ -8,7 +8,7 @@ logging.basicConfig(filename='data_preprocessing.log', level=logging.INFO)
 
 # data paths for persistence
 data_directory = '../data/'
-data_preprocessing_output_path = os.path.join(data_directory, 'pre-processed')
+data_ingestion_output_path = os.path.join(data_directory, 'processed')
 etfs_data_path = os.path.join('raw', 'etfs')
 stocks_data_path = os.path.join('raw', 'stocks')
 
@@ -38,12 +38,13 @@ def combine_dir_data(path):
     """
     #load all data
     logging.info(f"Combining data from {path}")
-    dfs = []
     abs_path = os.path.join(data_directory, path)
-    for file in os.listdir(abs_path):
+    files = os.listdir(abs_path)
+    dfs = [''] * len(files)
+    for index, file in enumerate(files):
         if file.endswith('.csv'):
             df = import_data(path, file)
-            dfs.append(df)
+            dfs[index] = df
     result = pd.concat(dfs, ignore_index=True)
     return result
 
@@ -54,3 +55,5 @@ if __name__ == '__main__':
     result = pd.concat([pd_etfs_data, pd_stocks_data], ignore_index=True)
     export_df_as_parquet(result, 'processed', 'preprocessed_data')
     logging.info("Data preprocessing complete.")
+
+

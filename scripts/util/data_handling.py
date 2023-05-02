@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import pyarrow as pa
-from pyarrow import csv
+from pyarrow import csv, parquet
 
 data_directory = '../data/'
 
@@ -38,8 +38,8 @@ def import_csv_as_df(parent_directory, file_name):
         file_name = file_name.replace('.csv', '')
     file_path = path(parent_directory, file_name, '.csv')
     table = csv.read_csv(file_path)
-    df = validate_data_types(df)
     df = table.to_pandas()
+    df = validate_data_types(df)
     return df
 
 def validate_data_types(dataframe):

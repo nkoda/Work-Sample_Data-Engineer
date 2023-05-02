@@ -1,12 +1,11 @@
 import os
 import logging
-import pandas as pd
 from util.data_handling import import_parquet_as_df, export_df_as_parquet
 
 # data paths for persistence
-from data_preprocessing import data_preprocessing_output_path
+from data_ingestion import data_ingestion_output_path
 data_directory = '../data/'
-data_augmentation_output_path = os.path.join(data_directory, 'training', 'augmented_data')
+data_augmentation_output_path = os.path.join(data_directory, 'training')
 
 # log setups
 logger = logging.getLogger(__name__)
@@ -100,7 +99,7 @@ def read_data(file_name):
         The pandas DataFrame read from the parquet file.
     """
     try:
-        df = import_parquet_as_df(data_preprocessing_output_path, file_name)
+        df = import_parquet_as_df(data_ingestion_output_path, file_name)
         logger.info(f"Successfully retrieved {file_name}.parquet")
         return df
     except Exception as e:
