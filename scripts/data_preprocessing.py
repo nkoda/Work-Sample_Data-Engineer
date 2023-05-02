@@ -5,8 +5,8 @@ from util.data_handling import import_csv_as_df, export_df_as_parquet
 # data paths for persistence
 data_directory = '../data/'
 data_preprocessing_output_path = os.path.join(data_directory, 'processed')
-etfs_data_path = os.path.join(data_directory, 'raw', 'etfs')
-stocks_data_path = os.path.join(data_directory, 'raw', 'stocks')
+etfs_data_path = os.path.join('raw', 'etfs')
+stocks_data_path = os.path.join('raw', 'stocks')
 
 def import_data(directory, file_name):
     """Import data from a CSV file as a Pandas DataFrame.
@@ -33,7 +33,8 @@ def combine_dir_data(path):
     """
     #load all data
     dfs = []
-    for file in os.listdir(path):
+    abs_path = os.path.join(data_directory, path)
+    for file in os.listdir(abs_path):
         if file.endswith('.csv'):
             df = import_data(path, file)
             dfs.append(df)

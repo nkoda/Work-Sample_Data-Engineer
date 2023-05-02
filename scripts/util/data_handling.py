@@ -1,8 +1,9 @@
 import os
 import pandas as pd
 import pyarrow as pa
+from pyarrow import csv, parquet
 
-data_directory = '../../data/'
+data_directory = '../data/'
 
 def path(parent_directory, file_name, extension):
     """
@@ -27,15 +28,16 @@ def import_csv_as_df(parent_directory, file_name):
     Imports a CSV file as a Pandas DataFrame
 
     Args:
-    parent_directory (str): the name of the parent directory
+    parent_directory (str): the name of the parent directory holding the file
     file_name (str): the name of the CSV file without extension
 
     Returns:
     pandas.DataFrame: the DataFrame containing the data from the CSV file
     """
+    if file_name.endswith('.csv'):
+        file_name = file_name.replace('.csv', '')
     file_path = path(parent_directory, file_name, '.csv')
-    schema = pa.csv.read_csv(file_path).schema
-    table = pa.csv.read_(file_path, schema=schema)
+    table = csv.read_csv(file_path)
     df = table.to_pandas()
     return df
 
