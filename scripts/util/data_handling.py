@@ -5,6 +5,17 @@ import pyarrow as pa
 data_directory = '../../data/'
 
 def path(parent_directory, file_name, extension):
+    """
+    Returns the full file path given a parent directory, file name and extension
+
+    Args:
+    parent_directory (str): the name of the parent directory
+    file_name (str): the name of the file without extension
+    extension (str): the file extension, including the period (e.g. '.csv', '.parquet')
+
+    Returns:
+    str: the full file path including the parent directory, file name and extension
+    """
     return os.path.join(
         data_directory,
         parent_directory,
@@ -12,6 +23,16 @@ def path(parent_directory, file_name, extension):
     )
 
 def import_csv_as_df(parent_directory, file_name):
+    """
+    Imports a CSV file as a Pandas DataFrame
+
+    Args:
+    parent_directory (str): the name of the parent directory
+    file_name (str): the name of the CSV file without extension
+
+    Returns:
+    pandas.DataFrame: the DataFrame containing the data from the CSV file
+    """
     file_path = path(parent_directory, file_name, '.csv')
     schema = pa.csv.read_csv(file_path).schema
     table = pa.csv.read_(file_path, schema=schema)
@@ -19,6 +40,16 @@ def import_csv_as_df(parent_directory, file_name):
     return df
 
 def import_parquet_as_df(parent_directory, file_name):
+    """
+    Imports a Parquet file as a Pandas DataFrame
+
+    Args:
+    parent_directory (str): the name of the parent directory
+    file_name (str): the name of the Parquet file without extension
+
+    Returns:
+    pandas.DataFrame: the DataFrame containing the data from the Parquet file, sorted by 'Date'
+    """
     file_path = path(parent_directory, file_name, '.parquet')
     table = pa.parquet.read_table(file_path)
     df = table.to_pandas()
@@ -26,7 +57,14 @@ def import_parquet_as_df(parent_directory, file_name):
     return df
 
 def export_df_as_parquet(dataframe, parent_directory, file_name):
+    """
+    Exports a Pandas DataFrame as a Parquet file
+
+    Args:
+    dataframe (pandas.DataFrame): the DataFrame to export
+    parent_directory (str): the name of the parent directory
+    file_name (str): the name of the Parquet file without extension
+    """
     file_path = path(parent_directory, file_name, '.parquet')
     table = pa.Table.from_pandas(dataframe)
     pa.parquet.write_table(table, file_path)
-
