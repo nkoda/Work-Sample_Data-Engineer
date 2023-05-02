@@ -101,6 +101,8 @@ def read_data(file_name):
     try:
         df = import_parquet_as_df(data_ingestion_output_path, file_name)
         logger.info(f"Successfully retrieved {file_name}.parquet")
+        logger.info(f"{file_name}.parquet statistics: ")
+        logger.info(df.describe().to_string())
         return df
     except Exception as e:
         logger.error(f"Failed to open {file_name}.parquet. Error message: {str(e)}")
