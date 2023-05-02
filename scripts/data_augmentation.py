@@ -1,5 +1,6 @@
 import os
 import logging
+import pandas as pd
 from util.data_handling import import_parquet_as_df, export_df_as_parquet
 
 # data paths for persistence
@@ -30,13 +31,14 @@ def manipulate_data(operation, dataframe):
         dataframe: The pandas DataFrame to manipulate.
     """
     try:
+        logger.info(f"Attempting {operation.__name__}")
         operation(dataframe)
         logger.info(f"{operation.__name__} successful")
     except Exception as e:
         logger.error(f"{operation.__name__} failed with error: {e}")
 
 
-def calculate_volume_moving_average(dataframe, window=3):
+def calculate_volume_moving_average(dataframe, window='30D'):
     """Calculates the volume moving average for the given DataFrame and returns True.
     
     Adds a new 'vol_moving_avg' column to the DataFrame, which is the rolling mean of
@@ -50,15 +52,15 @@ def calculate_volume_moving_average(dataframe, window=3):
         True, indicating that the calculation was successful.
     """
     dataframe['vol_moving_avg'] = (
-        dataframe
-        .groupby('Symbol')['volume']
-        .rolling(window=window)
-        .mean()
+        dataframe[['Symbol', 'Date', 'Volume']]
+        .groupby('Symbol', as_index=False)
+        .rolling('30D', on='Date')
+        .mean()['Volume']
     )
     return True
 
 
-def calculate_adj_rolling_median(dataframe, window=3):
+def calculate_adj_rolling_median(dataframe, window='30D'):
     """Calculates the adjusted rolling median for the given DataFrame and returns True.
     
     Adds a new 'adj_close_rolling_med' column to the DataFrame, which is the rolling median of
@@ -72,10 +74,10 @@ def calculate_adj_rolling_median(dataframe, window=3):
         True, indicating that the calculation was successful.
     """
     dataframe['adj_close_rolling_med'] = (
-        dataframe
-        .groupby('Symbol')['adj']
-        .rolling(window=window)
-        .median()
+        dataframe[['Symbol', 'Date', 'Adj Close']]
+        .groupby('Symbol', as_index=False)
+        .rolling('30D', on='Date')
+        .median()['Adj Close']
     )
     return True
 
@@ -114,14 +116,16 @@ def save_data(dataframe, file_name):
         None
     """
     try:
-        export_df_as_parquet(dataframe, data_augmentation_output_path, file_name)
+        export_df_as_parquet(dataframe, 'processed', file_name)
         logger.info(f"Data successfully saved to {file_name}.parquet")
     except Exception as e:
         logger.error(f"Failed to save {file_name}.parquet. Error message: {str(e)}")
         raise e
 
 if __name__ == '__main__':
+    logger.info("Initializing data augmentation process")
     df = read_data('preprocessed_data')
+    df['Date'] = pd.to_datetime(df['Date'])
     manipulate_data(calculate_volume_moving_average, df)
     manipulate_data(calculate_adj_rolling_median, df)
-    save_data(df, 'manipulated_data')
+    save_data(df, 'augmented_data')
