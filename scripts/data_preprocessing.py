@@ -3,7 +3,7 @@ import pandas as pd
 from util.data_handling import import_csv_as_df, export_df_as_parquet
 
 data_directory = '../data/'
-data_directory_output = 'processed'
+data_preprocessing_output_path = os.path.join(data_directory, 'processed')
 
 def import_data(directory, file_name):
     df = import_csv_as_df(directory, file_name)
