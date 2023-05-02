@@ -1,0 +1,14 @@
+INFO:__main__:Initializing data augmentation process
+INFO:__main__:Successfully retrieved preprocessed_data.parquet
+INFO:__main__:Attempting calculate_volume_moving_average
+ERROR:__main__:calculate_volume_moving_average failed with error: window must be an integer 0 or greater
+INFO:__main__:Attempting calculate_adj_rolling_median
+ERROR:__main__:calculate_adj_rolling_median failed with error: window must be an integer 0 or greater
+INFO:__main__:Data successfully saved to augmented_data.parquet
+INFO:__main__:Initializing data augmentation process
+INFO:__main__:Successfully retrieved preprocessed_data.parquet
+INFO:__main__:Attempting calculate_volume_moving_average
+INFO:__main__:calculate_volume_moving_average successful
+INFO:__main__:Attempting calculate_adj_rolling_median
+INFO:__main__:calculate_adj_rolling_median successful
+INFO:__main__:Data successfully saved to augmented_data.parquet

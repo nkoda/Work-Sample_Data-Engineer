@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import pyarrow as pa
-from pyarrow import csv, parquet
+from pyarrow import csv
 
 data_directory = '../data/'
 
@@ -38,8 +38,13 @@ def import_csv_as_df(parent_directory, file_name):
         file_name = file_name.replace('.csv', '')
     file_path = path(parent_directory, file_name, '.csv')
     table = csv.read_csv(file_path)
+    df = validate_data_types(df)
     df = table.to_pandas()
     return df
+
+def validate_data_types(dataframe):
+    dataframe['Date'] = pd.to_datetime(dataframe['Date'])
+    return dataframe
 
 def import_parquet_as_df(parent_directory, file_name):
     """
@@ -55,6 +60,7 @@ def import_parquet_as_df(parent_directory, file_name):
     file_path = path(parent_directory, file_name, '.parquet')
     table = pa.parquet.read_table(file_path)
     df = table.to_pandas()
+    df = validate_data_types(df)
     df = df.sort_values(by='Date')
     return df
 

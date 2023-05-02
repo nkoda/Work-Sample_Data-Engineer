@@ -12,13 +12,19 @@ data_augmentation_output_path = os.path.join(data_directory, 'training', 'augmen
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+# add console handler
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
-
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
+# add file handler
+log_file_path = '../logs/data_augmentation.log'
+fh = logging.FileHandler(log_file_path)
+fh.setLevel(logging.INFO)
+fh.setFormatter(formatter)
+logger.addHandler(fh)
 
 def manipulate_data(operation, dataframe):
     """Manipulates the given dataframe using the given operation function.
@@ -54,11 +60,10 @@ def calculate_volume_moving_average(dataframe, window='30D'):
     dataframe['vol_moving_avg'] = (
         dataframe[['Symbol', 'Date', 'Volume']]
         .groupby('Symbol', as_index=False)
-        .rolling('30D', on='Date')
+        .rolling(window, on='Date')
         .mean()['Volume']
     )
     return True
-
 
 def calculate_adj_rolling_median(dataframe, window='30D'):
     """Calculates the adjusted rolling median for the given DataFrame and returns True.
@@ -76,7 +81,7 @@ def calculate_adj_rolling_median(dataframe, window='30D'):
     dataframe['adj_close_rolling_med'] = (
         dataframe[['Symbol', 'Date', 'Adj Close']]
         .groupby('Symbol', as_index=False)
-        .rolling('30D', on='Date')
+        .rolling(window, on='Date')
         .median()['Adj Close']
     )
     return True
@@ -125,7 +130,6 @@ def save_data(dataframe, file_name):
 if __name__ == '__main__':
     logger.info("Initializing data augmentation process")
     df = read_data('preprocessed_data')
-    df['Date'] = pd.to_datetime(df['Date'])
     manipulate_data(calculate_volume_moving_average, df)
     manipulate_data(calculate_adj_rolling_median, df)
     save_data(df, 'augmented_data')
