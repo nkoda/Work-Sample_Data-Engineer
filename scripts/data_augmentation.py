@@ -1,5 +1,7 @@
 import os
 import logging
+import time
+import concurrent.futures
 from util.data_handling import import_parquet_as_df, export_df_as_parquet
 
 # data paths for persistence
@@ -37,8 +39,9 @@ def manipulate_data(operation, dataframe):
     """
     try:
         logger.info(f"Attempting {operation.__name__}")
-        operation(dataframe)
+        column_name, column_value = operation(dataframe)
         logger.info(f"{operation.__name__} successful")
+        return column_name, column_value
     except Exception as e:
         logger.error(f"{operation.__name__} failed with error: {e}")
 
@@ -56,13 +59,14 @@ def calculate_volume_moving_average(dataframe, window='30D'):
     Returns:
         True, indicating that the calculation was successful.
     """
-    dataframe['vol_moving_avg'] = (
+    # dataframe['vol_moving_avg'] = (
+    column = (
         dataframe[['Symbol', 'Date', 'Volume']]
         .groupby('Symbol', as_index=False)
         .rolling(window, on='Date')
         .mean()['Volume']
     )
-    return True
+    return ['vol_moving_avg', column]
 
 def calculate_adj_rolling_median(dataframe, window='30D'):
     """Calculates the adjusted rolling median for the given DataFrame and returns True.
@@ -77,13 +81,14 @@ def calculate_adj_rolling_median(dataframe, window='30D'):
     Returns:
         True, indicating that the calculation was successful.
     """
-    dataframe['adj_close_rolling_med'] = (
+    # dataframe['adj_close_rolling_med'] = (
+    column = (
         dataframe[['Symbol', 'Date', 'Adj Close']]
         .groupby('Symbol', as_index=False)
         .rolling(window, on='Date')
         .median()['Adj Close']
     )
-    return True
+    return ['adj_close_rolling_med', column]
 
 
 def read_data(file_name):
@@ -130,7 +135,31 @@ def save_data(dataframe, file_name):
 
 if __name__ == '__main__':
     logger.info("Initializing data augmentation process")
+    start_time = time.time()
     df = read_data('preprocessed_data')
-    manipulate_data(calculate_volume_moving_average, df)
-    manipulate_data(calculate_adj_rolling_median, df)
+    
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = []
+        futures.append(
+            executor.submit(
+                manipulate_data,
+                calculate_volume_moving_average,
+                df
+            ))
+        futures.append(
+            executor.submit(
+                manipulate_data, 
+                calculate_adj_rolling_median, 
+                df
+            ))
+        # Wait for all futures to complete
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                column_name, column_value = future.result()
+                df[column_name] = column_value
+            except Exception as e:
+                logger.error(f"Error executing manipulate_data: {e}")
+                continue
     save_data(df, 'augmented_data')
+    elapsed_time = time.time() - start_time
+    logger.info(f"Data Augmentation complete. Elapsed time: {elapsed_time:.2f} seconds")

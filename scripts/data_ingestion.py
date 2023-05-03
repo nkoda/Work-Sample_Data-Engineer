@@ -1,8 +1,9 @@
 import os
 import pandas as pd
-import logging
 import concurrent.futures
 from util.data_handling import import_csv_as_df, export_df_as_parquet
+import logging
+import time
 
 # log setups
 logger = logging.getLogger(__name__)
@@ -64,10 +65,12 @@ def combine_dir_data(path, num_threads = 4):
 
 if __name__ == '__main__':
     logger.info("Starting data preprocessing.")
-    pd_etfs_data = combine_dir_data(etfs_data_path)
-    pd_stocks_data = combine_dir_data(stocks_data_path)
-    result = pd.concat([pd_etfs_data, pd_stocks_data], ignore_index=True)
+    start_time = time.time()
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        futures = [executor.submit(combine_dir_data, path) for path in [etfs_data_path, stocks_data_path]]
+    result = pd.concat([future.result() for future in futures], ignore_index=True)
     export_df_as_parquet(result, 'processed', 'preprocessed_data')
-    logger.info("Data preprocessing complete.")
+    elapsed_time = time.time() - start_time
+    logger.info(f"Data preprocessing complete. Elapsed time: {elapsed_time:.2f} seconds")
 
 

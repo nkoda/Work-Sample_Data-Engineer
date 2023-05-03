@@ -132,3 +132,112 @@ max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.8
 2023-05-02 23:11:50,901 - __main__ - INFO - Random Forest Model's Mean Squared Error: 23001810703688.598
 2023-05-02 23:11:50,901 - __main__ - INFO - Attempting to save model to ../web_api
 2023-05-02 23:11:50,998 - __main__ - INFO - Finished training model.
+2023-05-03 10:44:35,940 - __main__ - INFO - Initializing data augmentation process
+2023-05-03 10:45:00,804 - __main__ - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-03 10:45:00,808 - __main__ - INFO - preprocessed_data.parquet statistics: 
+2023-05-03 10:45:14,259 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-03 10:45:14,259 - __main__ - INFO - Attempting calculate_volume_moving_average
+2023-05-03 10:45:57,597 - __main__ - INFO - calculate_volume_moving_average successful
+2023-05-03 10:45:57,598 - __main__ - INFO - Attempting calculate_adj_rolling_median
+2023-05-03 10:47:00,009 - __main__ - INFO - calculate_adj_rolling_median successful
+2023-05-03 10:47:18,725 - __main__ - INFO - Data successfully saved to augmented_data.parquet
+2023-05-03 10:47:18,726 - __main__ - INFO - Data Augmentation complete. Elapse time: 162.79 seconds
+2023-05-03 10:48:41,115 - __main__ - INFO - Initializing data augmentation process
+2023-05-03 10:49:03,598 - __main__ - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-03 10:49:03,605 - __main__ - INFO - preprocessed_data.parquet statistics: 
+2023-05-03 10:49:16,466 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-03 10:49:16,468 - __main__ - INFO - Attempting calculate_volume_moving_average
+2023-05-03 10:49:16,592 - __main__ - INFO - Attempting calculate_adj_rolling_median
+2023-05-03 10:50:20,008 - __main__ - INFO - calculate_volume_moving_average successful
+2023-05-03 10:50:33,715 - __main__ - INFO - calculate_adj_rolling_median successful
+2023-05-03 10:50:50,222 - __main__ - INFO - Data successfully saved to augmented_data.parquet
+2023-05-03 10:50:50,223 - __main__ - INFO - Data Augmentation complete. Elapse time: 129.11 seconds
+2023-05-03 10:57:35,671 - __main__ - INFO - Initializing data augmentation process
+2023-05-03 10:57:58,232 - __main__ - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-03 10:57:58,243 - __main__ - INFO - preprocessed_data.parquet statistics: 
+2023-05-03 10:58:11,446 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-03 10:58:11,447 - __main__ - INFO - Attempting calculate_volume_moving_average
+2023-05-03 10:58:11,448 - __main__ - INFO - Attempting calculate_adj_rolling_median
+2023-05-03 10:59:12,422 - __main__ - INFO - calculate_volume_moving_average successful
+2023-05-03 10:59:23,937 - __main__ - INFO - Initializing data augmentation process
+2023-05-03 10:59:44,687 - __main__ - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-03 10:59:44,688 - __main__ - INFO - preprocessed_data.parquet statistics: 
+2023-05-03 10:59:57,917 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-03 10:59:57,918 - __main__ - INFO - Attempting calculate_volume_moving_average
+2023-05-03 10:59:58,040 - __main__ - INFO - Attempting calculate_adj_rolling_median
+2023-05-03 11:00:47,908 - __main__ - INFO - calculate_volume_moving_average successful
+2023-05-03 11:00:47,913 - __main__ - ERROR - Error executing manipulate_data: 'NoneType' object is not subscriptable
+2023-05-03 11:01:00,169 - __main__ - INFO - calculate_adj_rolling_median successful
+2023-05-03 11:01:00,169 - __main__ - ERROR - Error executing manipulate_data: 'NoneType' object is not subscriptable
+2023-05-03 11:01:12,939 - __main__ - INFO - Data successfully saved to augmented_data.parquet
+2023-05-03 11:01:12,939 - __main__ - INFO - Data Augmentation complete. Elapsed time: 109.00 seconds
+2023-05-03 11:01:59,593 - __main__ - INFO - Initializing data augmentation process
+2023-05-03 11:02:19,957 - __main__ - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-03 11:02:19,962 - __main__ - INFO - preprocessed_data.parquet statistics: 
+2023-05-03 11:02:32,678 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-03 11:02:32,679 - __main__ - INFO - Attempting calculate_volume_moving_average
+2023-05-03 11:02:32,679 - __main__ - INFO - Attempting calculate_adj_rolling_median
+2023-05-03 11:03:34,134 - __main__ - INFO - calculate_volume_moving_average successful
+2023-05-03 11:03:34,142 - __main__ - ERROR - Error executing manipulate_data: 'NoneType' object is not subscriptable
+2023-05-03 11:03:46,437 - __main__ - INFO - calculate_adj_rolling_median successful
+2023-05-03 11:03:46,441 - __main__ - ERROR - Error executing manipulate_data: 'NoneType' object is not subscriptable
+2023-05-03 11:03:57,642 - __main__ - INFO - Data successfully saved to augmented_data.parquet
+2023-05-03 11:03:57,642 - __main__ - INFO - Data Augmentation complete. Elapsed time: 118.05 seconds
+2023-05-03 11:04:07,871 - __main__ - INFO - Initializing data augmentation process
+2023-05-03 11:04:28,835 - __main__ - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-03 11:04:28,842 - __main__ - INFO - preprocessed_data.parquet statistics: 
+2023-05-03 11:04:41,941 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-03 11:04:41,942 - __main__ - INFO - Attempting calculate_volume_moving_average
+2023-05-03 11:04:41,943 - __main__ - INFO - Attempting calculate_adj_rolling_median
+2023-05-03 11:05:29,388 - __main__ - INFO - calculate_volume_moving_average successful
+2023-05-03 11:05:47,446 - __main__ - INFO - calculate_adj_rolling_median successful
+2023-05-03 11:06:14,312 - __main__ - INFO - Data successfully saved to augmented_data.parquet
+2023-05-03 11:06:14,314 - __main__ - INFO - Data Augmentation complete. Elapsed time: 126.44 seconds

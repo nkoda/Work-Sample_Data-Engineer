@@ -105,7 +105,3 @@ if __name__ == '__main__':
     log_model_metrics(mae, mse)
     save_model(model)
     logger.info("Finished training model.")
-
-    
-
-

@@ -1,0 +1,25 @@
+2023-05-02 23:14:52,202 - __main__ - INFO - Initializing ML model training process.
+2023-05-02 23:14:52,203 - __main__ - INFO - Attempting to access augmented_data.parquet
+2023-05-02 23:15:44,037 - __main__ - INFO - Initializing ML model training process.
+2023-05-02 23:15:44,037 - __main__ - INFO - Attempting to access augmented_data.parquet
+2023-05-02 23:17:00,333 - __main__ - INFO - Successfully retrieved augmented_data.parquet
+2023-05-02 23:17:00,345 - __main__ - INFO - augmented_data.parquet statistics: 
+2023-05-02 23:17:20,939 - __main__ - INFO -                Open          High           Low         Close     Adj Close        Volume  vol_moving_avg  adj_close_rolling_med
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07    2.815143e+07           2.815143e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06    1.113555e+06          -6.256323e+16
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07    1.112907e+07           1.024815e+19
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00    0.000000e+00          -2.264945e+21
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04    1.514762e+04           4.796534e+00
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04    9.460909e+04           1.292000e+01
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05    5.095707e+05           2.933287e+01
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10    2.448850e+09           1.829700e+19
+2023-05-02 23:17:20,940 - __main__ - INFO - Initializing model training.
+2023-05-02 23:17:40,017 - __main__ - INFO - Separating data for training.
+2023-05-02 23:17:46,622 - __main__ - INFO - Instantiating a Random Forest Regressor.
+2023-05-02 23:17:46,637 - __main__ - INFO - Training the model with the data.
+2023-05-03 01:40:19,468 - __main__ - INFO - Assessing model performance.
+2023-05-03 01:40:51,415 - __main__ - INFO - Finished model training.
+2023-05-03 01:40:51,487 - __main__ - INFO - Random Forest Model's Mean Absolute Error: 399747.4331031089
+2023-05-03 01:40:51,488 - __main__ - INFO - Random Forest Model's Mean Squared Error: 23298132734624.625
+2023-05-03 01:40:51,489 - __main__ - INFO - Attempting to save model to ../web_api
+2023-05-03 01:40:51,927 - __main__ - INFO - Finished training model.
