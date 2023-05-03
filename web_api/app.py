@@ -16,7 +16,7 @@ model = joblib.load('random-forest_predictor.jolib')
 def health_check():
     return 'OK', 200
 
-@app.route("/predict", methods=["GET"])
+@app.route("/predict", methods=["GET", "POST"])
 def prediction():
     # Get the query parameters
     vol_moving_avg = request.args.get('vol_moving_avg')
