@@ -15,9 +15,9 @@ def prediction():
     vol_moving_avg = request.args.get('vol_moving_avg')
     adj_close_rolling_med = request.args.get('adj_close_rolling_med')
     context = (
-        np.array([vol_moving_avg, adj_close_rolling_med])
-        .reshape(1, -1)
-        ).astype(float)
+        np.array([[vol_moving_avg, adj_close_rolling_med]])
+        .astype(float)
+        )
     results = return_prediction(model, context)
     return str(results)
 

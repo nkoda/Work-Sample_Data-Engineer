@@ -1,4 +1,3 @@
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -22,7 +21,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 # add file handler
-log_file_path = '../logs/data_augmentation.log'
+log_file_path = '../logs/train_model.log'
 fh = logging.FileHandler(log_file_path)
 fh.setLevel(logging.INFO)
 fh.setFormatter(formatter)
@@ -31,7 +30,6 @@ logger.addHandler(fh)
 def train_model(data):
     logger.info(f"Initializing model training.")
     # Assume `data` is loaded as a Pandas DataFrame
-    # data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
 
     # Remove rows with NaN values
@@ -49,7 +47,7 @@ def train_model(data):
 
     logger.info("Instantiating a Random Forest Regressor.")
     # Create a RandomForestRegressor model
-    model = RandomForestRegressor(n_estimators=100, random_state=42, max_depth=3, n_jobs=-1)
+    model = RandomForestRegressor(n_estimators=500, random_state=42, max_depth=10, n_jobs=-1)
     logger.info("Training the model with the data.")
     # Train the model
     model.fit(X_train, y_train)
