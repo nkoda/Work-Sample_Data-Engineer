@@ -2,3 +2,4 @@ Flask==2.2.3
 joblib==1.0.1
 numpy==1.21.6
 sklearn==0.0
+gunicorn==20.1.0
