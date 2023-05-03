@@ -1,10 +1,27 @@
 import os
 import pandas as pd
-import logging
+import concurrent.futures
 from util.data_handling import import_csv_as_df, export_df_as_parquet
+import logging
+import time
 
-# set up logging
-logging.basicConfig(filename='data_preprocessing.log', level=logging.INFO)
+# log setups
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# add console handler
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
+# add file handler
+log_file_path = '../logs/data_ingestion.log'
+fh = logging.FileHandler(log_file_path)
+fh.setLevel(logging.INFO)
+fh.setFormatter(formatter)
+logger.addHandler(fh)
 
 # data paths for persistence
 data_directory = '../data/'
@@ -22,12 +39,12 @@ def import_data(directory, file_name):
     Returns:
         pandas.DataFrame: The DataFrame containing the imported data.
     """
-    logging.info(f"Importing data from {file_name}")
+    logger.info(f"Importing data from {file_name}")
     df = import_csv_as_df(directory, file_name)
     df['Symbol'] = file_name.replace('.csv', '')
     return df
 
-def combine_dir_data(path):
+def combine_dir_data(path, num_threads = 4):
     """Combine data from all CSV files in a directory into a single DataFrame.
 
     Args:
@@ -37,23 +54,23 @@ def combine_dir_data(path):
         pandas.DataFrame: The DataFrame containing the combined data.
     """
     #load all data
-    logging.info(f"Combining data from {path}")
+    logger.info(f"Combining data from {path}")
     abs_path = os.path.join(data_directory, path)
-    files = os.listdir(abs_path)
-    dfs = [''] * len(files)
-    for index, file in enumerate(files):
-        if file.endswith('.csv'):
-            df = import_data(path, file)
-            dfs[index] = df
-    result = pd.concat(dfs, ignore_index=True)
+    csv_files = [_ for _ in os.listdir(abs_path) if _.endswith('csv')]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+        futures = [executor.submit(import_data, path, file_name) for file_name in csv_files]
+    dataframes = [future.result() for future in futures]
+    result = pd.concat(dataframes, ignore_index=True)
     return result
 
 if __name__ == '__main__':
-    logging.info("Starting data preprocessing.")
-    pd_etfs_data = combine_dir_data(etfs_data_path)
-    pd_stocks_data = combine_dir_data(stocks_data_path)
-    result = pd.concat([pd_etfs_data, pd_stocks_data], ignore_index=True)
+    logger.info("Starting data preprocessing.")
+    start_time = time.time()
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        futures = [executor.submit(combine_dir_data, path) for path in [etfs_data_path, stocks_data_path]]
+    result = pd.concat([future.result() for future in futures], ignore_index=True)
     export_df_as_parquet(result, 'processed', 'preprocessed_data')
-    logging.info("Data preprocessing complete.")
+    elapsed_time = time.time() - start_time
+    logger.info(f"Data preprocessing complete. Elapsed time: {elapsed_time:.2f} seconds")
 
 
