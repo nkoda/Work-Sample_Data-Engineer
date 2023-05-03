@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+import concurrent.futures
 
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ def return_prediction(model, x_hat):
 
 #loading the ML model
 model = joblib.load('random-forest_predictor.jolib')
+executor = concurrent.futures.ThreadPoolExecutor()
 
 # Health check endpoint
 @app.route('/health', methods=['GET'])
@@ -31,9 +33,10 @@ def prediction():
     except ValueError:
         return jsonify({'error': 'Invalid query parameters: arguments must be float'}), 400
     
-    # Create the input array and get the prediction
+    # Create the input array and get the prediction asynchronously
     input_array = np.array([[vol_moving_avg, adj_close_rolling_med]])
-    prediction = model.predict(input_array)[0]
+    future = executor.submit(return_prediction, model, input_array)
+    prediction = future.result()[0]
     
     # Return the prediction
     return jsonify({'Volume Prediction': prediction}), 200
