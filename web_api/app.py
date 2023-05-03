@@ -2,11 +2,10 @@ from flask import Flask, request
 import joblib
 import numpy as np
 
-
 app = Flask(__name__)
 
-def return_prediction(model, y_hat):
-    prediction = model.predict(y_hat)
+def return_prediction(model, x_hat):
+    prediction = model.predict(x_hat)
     return prediction
 
 model = joblib.load('random-forest_predictor.jolib')
