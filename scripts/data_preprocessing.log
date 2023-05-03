@@ -40483,3 +40483,9 @@ INFO:__main__:Initializing model training.
 INFO:__main__:Separating data for training.
 INFO:__main__:Instantiating a Random Forest Regressor.
 INFO:__main__:Training the model with the data.
+INFO:__main__:Assessing model performance.
+INFO:__main__:Finished model training.
+INFO:__main__:Random Forest Model's Mean Absolute Error: 934777.2513752264
+INFO:__main__:Random Forest Model's Mean Squared Error: 27128464643419.438
+INFO:__main__:Attempting to save model to ../web_api
+INFO:__main__:Finished training model.

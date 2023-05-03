@@ -103,3 +103,9 @@ max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.8
 2023-05-02 15:10:50,769 - __main__ - INFO - Separating data for training.
 2023-05-02 15:10:58,411 - __main__ - INFO - Instantiating a Random Forest Regressor.
 2023-05-02 15:10:58,448 - __main__ - INFO - Training the model with the data.
+2023-05-02 15:23:01,938 - __main__ - INFO - Assessing model performance.
+2023-05-02 15:23:04,786 - __main__ - INFO - Finished model training.
+2023-05-02 15:23:04,866 - __main__ - INFO - Random Forest Model's Mean Absolute Error: 934777.2513752264
+2023-05-02 15:23:04,867 - __main__ - INFO - Random Forest Model's Mean Squared Error: 27128464643419.438
+2023-05-02 15:23:04,867 - __main__ - INFO - Attempting to save model to ../web_api
+2023-05-02 15:23:04,941 - __main__ - INFO - Finished training model.
