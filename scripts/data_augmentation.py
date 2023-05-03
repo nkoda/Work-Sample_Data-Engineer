@@ -133,7 +133,16 @@ def save_data(dataframe, file_name):
         logger.error(f"Failed to save {file_name}.parquet. Error message: {str(e)}")
         raise e
 
-if __name__ == '__main__':
+def transform_data():
+    """Airflow callable function to initiate data transformation workflow.
+    The workflow consists of reading data >> transform data >> save data as a parquet.
+
+    Raises:
+        Exception: If a data transform has failed.
+
+    Returns:
+        None
+    """
     logger.info("Initializing data augmentation process")
     start_time = time.time()
     df = read_data('preprocessed_data')

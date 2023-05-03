@@ -48,7 +48,7 @@ def train_model(data):
         # Train the model
         model, mae, mse = train_model(data)
     """
-    
+
     logger.info(f"Initializing model training.")
     # Assume `data` is loaded as a Pandas DataFrame
     data.set_index('Date', inplace=True)
@@ -148,7 +148,12 @@ def log_model_metrics(mae, mse):
     logger.info(f"Random Forest Model's Mean Absolute Error: {mae}")
     logger.info(f"Random Forest Model's Mean Squared Error: {mse}")
 
-if __name__ == '__main__':
+def deploy_model():
+    """Airflow callable function to train then deploy model.
+
+    Returns:
+        None
+    """
     logger.info("Initializing ML model training process.")
     start_time = time.time()
     dataframe = read_data('augmented_data')

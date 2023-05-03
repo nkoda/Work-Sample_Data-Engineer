@@ -63,7 +63,14 @@ def combine_dir_data(path, num_threads = 4):
     result = pd.concat(dataframes, ignore_index=True)
     return result
 
-if __name__ == '__main__':
+def ingest_data():
+    """Airflow callable function to initiate ingesting data worflow.
+    The workflow consists of reading various raw data >> 
+    combine all sources of data >> 
+    save data as a parquet.
+    Returns:
+        None
+    """
     logger.info("Starting data preprocessing.")
     start_time = time.time()
     with concurrent.futures.ProcessPoolExecutor() as executor:
