@@ -22,3 +22,4 @@ RUN apt-get update -y \
   && rm /data/raw/archive.zip
 
 USER airflow
+
