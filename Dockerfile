@@ -27,12 +27,4 @@ RUN apt-get update -y \
   && unzip /data/raw/archive.zip \
   && rm /data/raw/archive.zip
 
-RUN airflow users create \
-  --username admin \
-  --firstname admin \
-  --lastname User \
-  --role Admin \
-  --email admin@example.com \
-  --password admin
-
 USER airflow
