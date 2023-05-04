@@ -16,15 +16,11 @@ COPY ./dags/data_pipeline.py /opt/airflow/dags/
 
 USER root
 # Install the unzip utility (if not already installed)
-RUN ls -a
-RUN apt-get update -y
-RUN apt-get install -y unzip
-RUN unzip /data/raw/archive.zip
+RUN apt-get update -y \
+  && apt-get install -y unzip \
+  && unzip /data/raw/archive.zip \
+  && rm /data/raw/archive.zip
+ 
+ USER airflow
 
-user airflow
-
-# Set the entry point to the Airflow scheduler
-ENTRYPOINT ["airflow"]
-
-# Set the command to run the scheduler and webserver in daemon mode
-CMD ["scheduler", "--daemon", "&&", "webserver", "--daemon"]
+ CMD ['scheduler']
