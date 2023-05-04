@@ -4,7 +4,15 @@ from datetime import datetime, timedelta
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'scripts')))
+# Add the parent directory of the DAG file to the Python path
+dag_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.abspath(os.path.join(dag_dir, os.pardir))
+sys.path.append(parent_dir)
+
+# Add the scripts directory to the Python path
+scripts_dir = os.path.join(parent_dir, 'scripts')
+sys.path.append(scripts_dir)
+
 from scripts.data_ingestion import ingest_data
 from scripts.data_augmentation import transform_data
 from scripts.train_model import deploy_model
