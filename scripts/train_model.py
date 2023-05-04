@@ -22,7 +22,11 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 # add file handler
-log_file_path = '../logs/train_model.log'
+# Get the directory of the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct the path to the logs directory
+logs_dir = os.path.join(current_dir, "../logs")
+log_file_path = os.path.join(logs_dir, "train_model.log")
 fh = logging.FileHandler(log_file_path)
 fh.setLevel(logging.INFO)
 fh.setFormatter(formatter)
