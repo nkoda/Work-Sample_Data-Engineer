@@ -5,11 +5,15 @@ RUN apt-get update && apt-get install -y supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy the code into the container
-COPY . /app
+COPY . /
 
 # Install the required packages
-WORKDIR /app
 RUN pip install --no-cache-dir -r requirements_data-pipeline.txt
+
+RUN apt-get update -y \
+  && apt-get install -y unzip \
+  && unzip /data/raw/archive.zip \
+  && rm /data/raw/archive.zip
 
 # Airflow setup
 ENV AIRFLOW_HOME=/app/airflow
