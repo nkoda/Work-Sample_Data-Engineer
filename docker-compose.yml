@@ -3,29 +3,18 @@ version: '3'
 services:
   webserver:
     build: .
-    command: ["bash", "-c", "airflow db init && airflow webserver"]
+    command: ["bash", "-c", "airflow db init && airflow users  create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin && airflow webserver"]
     ports:
       - "8080:8080"
     environment:
       - LOAD_EX=n
-      - AIRFLOW_ADMIN_USERNAME=admin
-      - AIRFLOW_ADMIN_FIRSTNAME=Admin
-      - AIRFLOW_ADMIN_LASTNAME=User
-      - AIRFLOW_ADMIN_EMAIL=admin@example.com
-      - AIRFLOW_ADMIN_PASSWORD=admin
-      
+
   scheduler:
     build: .
     command: ["bash", "-c", "airflow scheduler"]
     environment:
       - LOAD_EX=n
-
-  flower:
-    image: apache/airflow:2.3.3
-    command: ["flower"]
-    ports:
-      - "5555:5555"
-
+      
   db:
     image: postgres:13-alpine
     environment:
