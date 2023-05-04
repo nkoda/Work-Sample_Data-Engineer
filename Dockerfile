@@ -24,4 +24,4 @@ RUN apt-get update -y \
 USER airflow
 
 # Start the Airflow scheduler and webserver
-CMD ["bash", "-c", "airflow scheduler & airflow webserver"]
+CMD ["bash", "-c", "airflow db init & airflow scheduler & airflow webserver"]
