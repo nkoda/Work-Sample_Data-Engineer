@@ -4,8 +4,14 @@ FROM apache/airflow:2.1.2
 # Copy the requirements file to the image
 COPY requirements_data-pipeline.txt .
 
+# Copy file structure
+COPY . /
+
 # Install the required packages
 RUN pip install --no-cache-dir -r requirements_data-pipeline.txt
+
+# Install the unzip utility (if not already installed)
+RUN apt-get update && apt-get install -y unzip
 
 # Copy the DAG file to the DAGs directory
 COPY ./dags/data_pipeline.py /opt/airflow/dags/
