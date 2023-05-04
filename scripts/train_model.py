@@ -8,7 +8,9 @@ import os
 import time
 
 from data_augmentation import data_augmentation_output_path
-model_destination_path = os.path.join('..','web_api')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+data_directory = os.path.join(dir_path, '..', 'data')
+model_destination_path = os.path.join(dir_path, '..', 'web_api')
 
 # Setup logger
 logger = logging.getLogger(__name__)

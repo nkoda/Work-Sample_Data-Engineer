@@ -3,7 +3,9 @@ import pandas as pd
 import pyarrow as pa
 from pyarrow import csv, parquet
 
-data_directory = '../data/'
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_directory = os.path.join(current_dir, '..', '..', 'data')
 
 def path(parent_directory, file_name, extension):
     """

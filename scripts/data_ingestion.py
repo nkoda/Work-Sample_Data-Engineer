@@ -28,10 +28,10 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 # data paths for persistence
-data_directory = '../data/'
+data_directory = os.path.join(current_dir, '..', 'data')
 data_ingestion_output_path = os.path.join(data_directory, 'processed')
-etfs_data_path = os.path.join('raw', 'etfs')
-stocks_data_path = os.path.join('raw', 'stocks')
+etfs_data_path = os.path.join(data_directory, 'raw', 'etfs')
+stocks_data_path = os.path.join(data_directory, 'raw', 'stocks')
 
 def import_data(directory, file_name):
     """Import data from a CSV file as a Pandas DataFrame.
@@ -60,12 +60,38 @@ def combine_dir_data(path, num_threads = 4):
     #load all data
     logger.info(f"Combining data from {path}")
     abs_path = os.path.join(data_directory, path)
+    if os.path.exists(abs_path):
+        logger.info(f"The given path is valid: {abs_path}")
+    else:
+        logger.error(f"This path is not valid {abs_path}")
     csv_files = [_ for _ in os.listdir(abs_path) if _.endswith('csv')]
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
         futures = [executor.submit(import_data, path, file_name) for file_name in csv_files]
     dataframes = [future.result() for future in futures]
     result = pd.concat(dataframes, ignore_index=True)
     return result
+
+def save_data(dataframe, file_name):
+    """Saves a given dataframe as a parquet file with the specified file name.
+
+    Args:
+        dataframe (pandas.DataFrame): The dataframe to be saved.
+        file_name (str): The name of the parquet file to be saved.
+
+    Raises:
+        Exception: If the dataframe cannot be saved as a parquet file.
+
+    Returns:
+        None
+    """
+    try:
+
+        logger.info(f"Attempting to save data as {file_name}.parquet")
+        export_df_as_parquet(dataframe, 'processed', file_name)
+        logger.info(f"Data successfully saved to {file_name}.parquet")
+    except Exception as e:
+        logger.error(f"Failed to save {file_name}.parquet. Error message: {str(e)}")
+        raise e
 
 def ingest_data():
     """Airflow callable function to initiate ingesting data worflow.
@@ -80,7 +106,7 @@ def ingest_data():
     with concurrent.futures.ProcessPoolExecutor() as executor:
         futures = [executor.submit(combine_dir_data, path) for path in [etfs_data_path, stocks_data_path]]
     result = pd.concat([future.result() for future in futures], ignore_index=True)
-    export_df_as_parquet(result, 'processed', 'preprocessed_data')
+    save_data(result, 'preprocessed_data')
     elapsed_time = time.time() - start_time
     logger.info(f"Data preprocessing complete. Elapsed time: {elapsed_time:.2f} seconds")
 

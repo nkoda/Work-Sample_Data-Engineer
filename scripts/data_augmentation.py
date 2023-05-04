@@ -5,8 +5,9 @@ import concurrent.futures
 from util.data_handling import import_parquet_as_df, export_df_as_parquet
 
 # data paths for persistence
+current_dir = os.path.dirname(os.path.abspath(__file__))
 from data_ingestion import data_ingestion_output_path
-data_directory = '../data/'
+data_directory = os.path.join(current_dir, '..', 'data')
 data_augmentation_output_path = os.path.join(data_directory, 'training')
 
 # log setups
@@ -21,8 +22,6 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 # add file handler
-# Get the directory of the current file
-current_dir = os.path.dirname(os.path.abspath(__file__))
 # Construct the path to the logs directory
 logs_dir = os.path.join(current_dir, "../logs")
 log_file_path = os.path.join(logs_dir, "data_augmentation.log")
@@ -131,6 +130,8 @@ def save_data(dataframe, file_name):
         None
     """
     try:
+
+        logger.info(f"Attempting to save data as {file_name}.parquet")
         export_df_as_parquet(dataframe, 'training', file_name)
         logger.info(f"Data successfully saved to {file_name}.parquet")
     except Exception as e:
