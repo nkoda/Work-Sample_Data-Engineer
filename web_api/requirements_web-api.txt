@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:06939272564e0de9b3d18a6b67c913402feb3238ffaa5e0a981bf35dafb455c0
-size 86
+Flask==2.2.3
+joblib==1.0.1
+numpy==1.21.6
+sklearn==0.0
+gunicorn==20.1.0
+lightgbm==3.3.2
