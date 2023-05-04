@@ -14,9 +14,16 @@ RUN pip install --no-cache-dir -r requirements_data-pipeline.txt
 ENV AIRFLOW_HOME=/app/airflow
 RUN pip install apache-airflow
 
+# Disable DAG examples
+COPY ./airflow.cfg $AIRFLOW_HOME/airflow.cfg
+RUN sed -i 's/^load_examples = .*/load_examples = false/' $AIRFLOW_HOME/airflow.cfg
+COPY ./dags/* $AIRFLOW_HOME/dags/
+
 # Copy the DAG file to the DAGs directory
 RUN mkdir -p $AIRFLOW_HOME/scripts
 RUN mkdir -p $AIRFLOW_HOME/data
+RUN mkdir -p $AIRFLOW_HOME/web_api
+
 COPY ./dags/data_pipeline.py $AIRFLOW_HOME/dags/
 COPY ./scripts $AIRFLOW_HOME/scripts
 COPY ./data $AIRFLOW_HOME/data

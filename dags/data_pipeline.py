@@ -1,7 +1,10 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
+import os
+import sys
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'scripts')))
 from scripts.data_ingestion import ingest_data
 from scripts.data_augmentation import transform_data
 from scripts.train_model import deploy_model
