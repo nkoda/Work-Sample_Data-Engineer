@@ -20,8 +20,5 @@ RUN apt-get update -y \
   && apt-get install -y unzip \
   && unzip /data/raw/archive.zip \
   && rm /data/raw/archive.zip
- 
-USER airflow
 
-# Start the Airflow scheduler and webserver
-CMD ["bash", "-c", "airflow scheduler & airflow webserver"]
+USER airflow
