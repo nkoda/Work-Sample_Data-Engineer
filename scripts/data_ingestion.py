@@ -103,9 +103,9 @@ def ingest_data():
     """
     logger.info("Starting data preprocessing.")
     start_time = time.time()
-    etfs_df = combine_dir_data(etfs_data_path)
-    stocks_df = combine_dir_data(stocks_data_path)
-    result = pd.concat([etfs_df, stocks_df], ignore_index=True)
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        futures = [executor.submit(combine_dir_data, path) for path in [etfs_data_path, stocks_data_path]]
+    result = pd.concat([future.result() for future in futures], ignore_index=True)
     save_data(result, 'preprocessed_data')
     elapsed_time = time.time() - start_time
     logger.info(f"Data preprocessing complete. Elapsed time: {elapsed_time:.2f} seconds")
