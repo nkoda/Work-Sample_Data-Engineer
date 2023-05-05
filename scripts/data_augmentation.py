@@ -107,7 +107,9 @@ def read_data(file_name):
         The pandas DataFrame read from the parquet file.
     """
     try:
-        df = import_parquet_as_df(data_ingestion_output_path, file_name)
+        logger.info(f"Attempting to retrieve {file_name}.parquet")
+        logger.info(f"Path {os.path.exists(os.path.join(data_directory, 'processed'))}")
+        df = import_parquet_as_df('processed', file_name)
         logger.info(f"Successfully retrieved {file_name}.parquet")
         logger.info(f"{file_name}.parquet statistics: ")
         logger.info(df.describe().to_string())

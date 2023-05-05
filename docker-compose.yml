@@ -6,8 +6,3 @@ services:
     command: ["/usr/bin/supervisord"]
     ports:
       - "8080:8080"
-    volumes:
-      - model_volume:/app/ml-models
-
-volumes:
-  model_volume:

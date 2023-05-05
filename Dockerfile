@@ -16,9 +16,7 @@ ENV AIRFLOW_HOME=/app/airflow
 WORKDIR $AIRFLOW_HOME/
 
 # Copy the DAG file to the DAGs directory
-RUN mkdir -p scripts
-RUN mkdir -p data
-RUN mkdir -p web_api
+RUN mkdir -p data/ scripts/ web_api/
 
 COPY ./dags/data_pipeline.py dags/
 COPY ./scripts scripts/

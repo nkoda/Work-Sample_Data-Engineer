@@ -60,7 +60,7 @@ def import_parquet_as_df(parent_directory, file_name):
     pandas.DataFrame: the DataFrame containing the data from the Parquet file, sorted by 'Date'
     """
     file_path = path(parent_directory, file_name, '.parquet')
-    table = pa.parquet.read_table(file_path)
+    table = parquet.read_table(file_path)
     df = table.to_pandas()
     df = validate_data_types(df)
     df = df.sort_values(by='Date')
@@ -77,4 +77,4 @@ def export_df_as_parquet(dataframe, parent_directory, file_name):
     """
     file_path = path(parent_directory, file_name, '.parquet')
     table = pa.Table.from_pandas(dataframe)
-    pa.parquet.write_table(table, file_path)
+    parquet.write_table(table, file_path)

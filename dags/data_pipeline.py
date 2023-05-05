@@ -21,9 +21,11 @@ default_args = {
     'owner': 'my_name',
     'depends_on_past': False,
     'start_date': datetime(2023, 5, 3),
+    'task_timeout': timedelta(minutes=20),
+    'execution_timeout':timedelta(minutes=20),
 }
 
-dag = DAG('data_pipeline', default_args=default_args, schedule_interval='@once')
+dag = DAG('data_pipeline', default_args=default_args, schedule_interval=None, is_paused_upon_creation=True)
 
 # Define the tasks
 task_ingest = PythonOperator(task_id='ingest_data', python_callable=ingest_data, dag=dag)
