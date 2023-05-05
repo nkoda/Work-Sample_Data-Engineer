@@ -21,13 +21,9 @@ default_args = {
     'owner': 'my_name',
     'depends_on_past': False,
     'start_date': datetime(2023, 5, 3),
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=30)
 }
 
-dag = DAG('data_pipeline', default_args=default_args, schedule_interval='@monthly')
+dag = DAG('data_pipeline', default_args=default_args, schedule_interval='@once')
 
 # Define the tasks
 task_ingest = PythonOperator(task_id='ingest_data', python_callable=ingest_data, dag=dag)
