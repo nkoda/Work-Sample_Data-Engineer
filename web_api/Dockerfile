@@ -19,4 +19,4 @@ ENV PORT=5000
 EXPOSE $PORT
 
 # Start the Flask development server with gunicorn
-CMD  ["gunicorn", "--bind 0.0.0.0:"$PORT, "app:app"]
+CMD  ["gunicorn" , "-b", "0.0.0.0:"$PORT, "app:app"]

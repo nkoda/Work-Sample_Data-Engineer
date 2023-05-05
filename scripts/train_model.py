@@ -135,7 +135,10 @@ def save_model(model):
         logger.info(f"Attempting to save model to {model_destination_path}") 
         path = os.path.join(model_destination_path, 'lightgbm_predictor.joblib')
         with open(path, 'wb') as f:
+            #for web api
             joblib.dump(model, f)
+            #for docker reproducibility
+            joblib.dump(model, os.path.join('app','ml-model','lightgbm_predictor.joblib'))
     except Exception as e:
         logger.error(f"Failed to save ml model to {path}. Error - {e}")
 
