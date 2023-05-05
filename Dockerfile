@@ -28,6 +28,7 @@ COPY ./web_api /
 COPY ./logs logs/
 ENV PYTHONPATH=$PYTHONPATH:scripts/
 
+
 WORKDIR $AIRFLOW_HOME/data/raw
 #unzip data
 RUN apt-get update -y \
