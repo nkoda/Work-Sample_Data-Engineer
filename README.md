@@ -16,7 +16,7 @@ The pipeline consists of four stages, each building on top of the previous one:
 2. Raw data processing, creating a structured Parquet file.
 3. Feature engineering, creating a new Parquet file with additional columns.
 4. Machine learning training, including training metrics and saving the trained model.
-5. API service, serving the trained model.
+5. (Seperate service from the pipeline) API Service, serving the trained model. Accessible via [Render.](https://regression-tree-api.onrender.com/predict?vol_moving_avg=12345&adj_close_rolling_med=25)
 
 ## Pipeline Specification and DAG Diagram
 
@@ -63,10 +63,21 @@ After running the pipeline, the following artifacts will be produced:
 
 ## API Service
 
-start the API service by running:
+The API is seperate from the data pipeline therefore not intended to be ran directly in the Docker container. As such there are seperate instructions to run a local API service.
+A cloud hosted API of this ML model can be found on [Render.](https://regression-tree-api.onrender.com/predict?vol_moving_avg=12345&adj_close_rolling_med=25)
 
+1. Enter the web_api directory:
 ```
-docker-compose up --build
+cd ml-model/
+```
+2. install the required packages:
+```
+pip install requirements_web-api.txt
+```
+
+3. Start the flask development server:
+```
+flask run --port=5000
 ```
 
 The service will be available at `http://localhost:5000`.
