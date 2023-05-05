@@ -279,3 +279,22 @@ max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.8
 2023-05-04 16:03:28,420 - scripts.data_augmentation - INFO - Attempting to save data as augmented_data.parquet
 2023-05-04 16:04:14,651 - scripts.data_augmentation - INFO - Data successfully saved to augmented_data.parquet
 2023-05-04 16:04:14,662 - scripts.data_augmentation - INFO - Data Augmentation complete. Elapsed time: 194.06 seconds
+2023-05-04 23:09:48,760 - scripts.data_augmentation - INFO - Initializing data augmentation process
+2023-05-04 23:10:17,482 - scripts.data_augmentation - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-04 23:10:17,496 - scripts.data_augmentation - INFO - preprocessed_data.parquet statistics: 
+2023-05-04 23:10:30,858 - scripts.data_augmentation - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-04 23:10:30,861 - scripts.data_augmentation - INFO - Attempting calculate_volume_moving_average
+2023-05-04 23:10:30,990 - scripts.data_augmentation - INFO - Attempting calculate_adj_rolling_median
+2023-05-04 23:11:35,702 - scripts.data_augmentation - INFO - calculate_volume_moving_average successful
+2023-05-04 23:12:06,319 - scripts.data_augmentation - INFO - calculate_adj_rolling_median successful
+2023-05-04 23:12:14,925 - scripts.data_augmentation - INFO - Attempting to save data as augmented_data.parquet
+2023-05-04 23:12:53,426 - scripts.data_augmentation - INFO - Data successfully saved to augmented_data.parquet
+2023-05-04 23:12:53,435 - scripts.data_augmentation - INFO - Data Augmentation complete. Elapsed time: 184.67 seconds
