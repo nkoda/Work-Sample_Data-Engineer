@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.9-slim
 
 # Install supervisord and copy the configuration file
 RUN apt-get update && apt-get install -y supervisor
@@ -12,7 +12,6 @@ RUN pip install --no-cache-dir -r requirements_data-pipeline.txt
 
 # Airflow setup
 ENV AIRFLOW_HOME=/app/airflow
-RUN pip install apache-airflow
 
 WORKDIR $AIRFLOW_HOME/
 
