@@ -48,15 +48,15 @@ cd Work-Sample_Data-Engineer
 docker-compose up --build
 ```
 
-3. Access the Airflow web interface at http://localhost:8080 and enable the `data_pipeline` DAG. The login credentials are is `admin` for both the username and password.
+3. Access the Airflow web interface at http://localhost:8080 and enable the `data_pipeline` DAG. The login credentials is the string "admin" for both the username and password.
 
 ## Resulting Artifacts
 
 After running the pipeline, the following artifacts will be produced:
 
-1. A Parquet file with the processed raw data, saved in `data/processed_data/preprocessed_data.parquet`.
-2. A Parquet file with the added features, saved in `data/feature_engineering_data/augmented_data.parquet`.
-3. A saved machine learning model, saved in `web_api/model.joblib`.
+1. A Parquet file with the processed raw data, saved in `data/processed/preprocessed_data.parquet`.
+2. A Parquet file with the added features, saved in `data/training/augmented_data.parquet`.
+3. A saved machine learning model, saved in `web_api/random-forest_predictor.joblib`.
 4. Logs for each step of the ETL process are found in the `logs/` directory. Training metrics are specifically saved in `logs/training.log`.
 
 ## API Service
