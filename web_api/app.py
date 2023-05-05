@@ -11,7 +11,13 @@ def return_prediction(model, x_hat):
     return prediction
 
 #loading the ML model
-model = joblib.load(os.path.join("ml-model", "lightgbm_predictor.joblib"))
+#path is initially set to shared Docker volume for pipeline reproducibility.
+path = os.path.join('app','ml-models','lightgbm_predictor.joblib')
+if os.path.exists(path):
+    model = joblib.load(path)
+else:
+    #this will default to presaved model for web hosting.
+    model = joblib.load(os.path.join("ml-model", "lightgbm_predictor.joblib"))
 executor = concurrent.futures.ThreadPoolExecutor()
 
 # Health check endpoint
