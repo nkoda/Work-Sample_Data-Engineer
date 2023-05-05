@@ -7,6 +7,8 @@ The model was trained using LightGBM, an open-source gradient boosting framework
 To improve the runtime for data ingestion and feature engineering, the ThreadPoolExecutor module was used to enable parallel processing of data. This allowed for faster loading of data into memory during the training process. Additionally, a subset of the dataframe was used during the feature engineering to improve runtime by reducing the amount of calculations made.
 
 
+![alt text](https://github.com/nkoda/Work-Sample_Data-Engineer/blob/main/data_pipeline.drawio.svg?raw=true)
+
 
 ## Pipeline Structure and Dependencies
 The pipeline consists of four stages, each building on top of the previous one:
