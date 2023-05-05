@@ -3,7 +3,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Install dependencies
-COPY requirements_web-app.txt requirements.txt
+COPY requirements_web-api.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY lightgbm_predictor.joblib lightgbm_predictor.joblib
@@ -19,4 +19,4 @@ ENV PORT=5000
 EXPOSE $PORT
 
 # Start the Flask development server with gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:"$PORT, "app:app"]
+CMD  ["gunicorn", "--bind 0.0.0.0:"$PORT, "app:app"]

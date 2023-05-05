@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import joblib
 import numpy as np
 import concurrent.futures
+import os
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ def return_prediction(model, x_hat):
     return prediction
 
 #loading the ML model
-model = joblib.load('random-forest_predictor.jolib')
+model = joblib.load(os.path.join("ml-model", "lightgbm_predictor.joblib"))
 executor = concurrent.futures.ThreadPoolExecutor()
 
 # Health check endpoint

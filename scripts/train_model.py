@@ -10,7 +10,7 @@ import time
 from data_augmentation import data_augmentation_output_path
 dir_path = os.path.dirname(os.path.realpath(__file__))
 data_directory = os.path.join(dir_path, '..', 'data')
-model_destination_path = os.path.join(dir_path, '..', 'web_api')
+model_destination_path = os.path.join(dir_path, '..', 'web_api', 'ml-model')
 
 # Setup logger
 logger = logging.getLogger(__name__)
