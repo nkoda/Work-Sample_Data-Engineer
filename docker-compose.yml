@@ -9,12 +9,5 @@ services:
     volumes:
       - model_volume:/app/ml-models
 
-  web_app_container:
-    build: ./web_api
-    ports:
-      - "5000:5000"
-    volumes:
-      - model_volume:/app/ml-models
-
 volumes:
   model_volume:
