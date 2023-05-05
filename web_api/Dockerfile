@@ -6,7 +6,7 @@ WORKDIR /app
 COPY requirements_web-api.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY lightgbm_predictor.joblib lightgbm_predictor.joblib
+COPY ./ml-model/lightgbm_predictor.joblib lightgbm_predictor.joblib
 # Copy the web_app files into the container
 COPY app.py /
 
