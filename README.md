@@ -1,6 +1,6 @@
 # Data Pipeline for Raw Stock Market Data Ingestion, Feature Engineering, and Machine Learning Training
 
-This data pipeline project focuses on ingesting and processing raw stock market data, performing feature engineering on top of the processed data, training a predictive model, and building an API service to serve the trained model API is currently hosted on [Render](https://regression-tree-api.onrender.com/predict?vol_moving_avg=12345&adj_close_rolling_med=25). The pipeline is designed using a DAG (Directed Acyclic Graph) oriented tool, Apache Airflow, to streamline data processing and management with tracking data lineage, ensuring data integrity, and minimizing errors during processing.
+This data pipeline project focuses on ingesting and processing raw stock market data, performing feature engineering on top of the processed data, training a predictive model, and building an API service to serve the trained model. The API is currently hosted on [Render](https://regression-tree-api.onrender.com/predict?vol_moving_avg=12345&adj_close_rolling_med=25). The pipeline is designed using a DAG (Directed Acyclic Graph) oriented tool, Apache Airflow, to streamline data processing and management with tracking data lineage, ensuring data integrity, and minimizing errors during processing.
 
 The model was trained using LightGBM, an open-source gradient boosting framework that uses tree-based learning algorithms. LightGBM is designed to be memory-efficient and fast, making it a good choice for large datasets.
 
