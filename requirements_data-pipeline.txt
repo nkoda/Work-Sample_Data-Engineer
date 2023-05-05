@@ -3,6 +3,7 @@ sklearn==0.0
 joblib==1.0.1
 pyarrow==11.0.0
 apache-airflow==2.6.0
+numpy==1.22.3
 lightgbm==3.3.2
 apache-airflow-providers-common-sql==1.4.0
 apache-airflow-providers-ftp==3.3.1
