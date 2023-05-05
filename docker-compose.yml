@@ -6,3 +6,8 @@ services:
     command: ["/usr/bin/supervisord"]
     ports:
       - "8080:8080"
+
+  web_api:
+    build: ./web_api
+    ports:
+      - "5000:5000"

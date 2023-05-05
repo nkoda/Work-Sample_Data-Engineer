@@ -133,7 +133,7 @@ def save_model(model):
     """
     try:
         logger.info(f"Attempting to save model to {model_destination_path}") 
-        path = os.path.join(model_destination_path, 'random-forest_predictor.jolib')
+        path = os.path.join(model_destination_path, 'lightgbm_predictor.joblib')
         with open(path, 'wb') as f:
             joblib.dump(model, f)
     except Exception as e:
