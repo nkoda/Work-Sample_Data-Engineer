@@ -56,15 +56,15 @@ After running the pipeline, the following artifacts will be produced:
 
 1. A Parquet file with the processed raw data, saved in `data/processed/preprocessed_data.parquet`.
 2. A Parquet file with the added features, saved in `data/training/augmented_data.parquet`.
-3. A saved machine learning model, saved in `web_api/random-forest_predictor.joblib`.
+3. A saved machine learning model, saved in `web_api/ml-model/lightgbm_predictor.joblib`.
 4. Logs for each step of the ETL process are found in the `logs/` directory. Training metrics are specifically saved in `logs/training.log`.
 
 ## API Service
 
-After running the pipeline, start the API service by running:
+start the API service by running:
 
 ```
-python api/server.py
+docker-compose up --build
 ```
 
 The service will be available at `http://localhost:5000`.
@@ -73,21 +73,12 @@ The following API endpoint is available:
 
 - `GET /predict?vol_moving_avg={vol_moving_avg}&adj_close_rolling_med={adj_close_rolling_med}`: Returns the predicted trading volume for the given values of `vol_moving_avg` and `adj_close_rolling_med`.
 
-## Testing
-
-Unit tests are provided for the data processing and feature engineering tasks. To run the tests, execute the following command:
-
-```
-python -m unittest discover tests
-```
-
-Functional testing of the API service can be performed using tools like Postman or cURL. A sample test script is provided in `tests/test_api.py`.
 
 ## Improvement Suggestions
 
 The following improvement suggestions can be made for future iterations of the pipeline:
 
-1. Increase the coverage of unit tests.
+1. Implement unit tests to validate trustworthiness.
 2. Implement end-to-end testing for the entire pipeline.
 3. Add support for additional data sources.
 4. Improve the performance of the machine learning training step.
