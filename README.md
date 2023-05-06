@@ -26,7 +26,11 @@ The pipeline is defined in Airflow using DAG (Directed Acyclic Graph), where eac
 
 - Docker: The pipeline is designed to be run using Docker, so you will need to have Docker installed on your system. You can download and install Docker from the official Docker website: https://www.docker.com/get-started
 
+- Docker requirements: Upon testing, the container needs sufficient resources to complete the DAG pipeline. If your container instance is failing to complete the DAG, please allocate more RAM / CPU cores for your Docker container. You will know if you need more resources when the Airflow task fails with "Negsignal.SIGKILL" appearing in the task logs. Refer to this Stackoverflow [post](https://stackoverflow.com/questions/69231797/airflow-dag-fails-when-pythonoperator-with-error-negsignal-sigkill)
+
 - Git LFS: The pipeline uses Git LFS (Large File Storage) to manage large files. You will need to have Git LFS installed on your system. You can download and install Git LFS from the official Git LFS website: https://git-lfs.github.com/
+
+- Local Instance: If you plan to run Airflow locally, you can find all the necessary python packages to run the scripts under `requirements_data-pipeline.txt`. Additionally be sure to set the `dags_folder` in the AIRFLOW_HOME directory to point to this repositories `/dags` directory. This can be done by modifying the airflow.cfg file located in `cd ~/ariflow`.
 
 Note: If you are using a Linux-based operating system, you may need to install Git LFS using your package manager. For example, on Ubuntu, you can install Git LFS by running the following command:
 
