@@ -20,7 +20,7 @@ The pipeline consists of four stages, each building on top of the previous one:
 
 ## Pipeline Specification and DAG Diagram
 
-The pipeline is defined in Airflow using DAG (Directed Acyclic Graph), where each stage is represented by a task and dependencies between tasks are represented by edges. The pipeline specification and diagram can be found in `dags/data_pipeline.py`.
+The pipeline is defined in Airflow using DAG (Directed Acyclic Graph), where each stage is represented by a task and dependencies between tasks are represented by edges. The pipeline specification can be found in `dags/data_pipeline.py`, and a visual diagram representation can be found in the `docs/data_pipeline.drawio.svg`.
 
 ## Prerequisites needed before running the Pipeline:
 
