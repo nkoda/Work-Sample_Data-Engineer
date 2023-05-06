@@ -60,7 +60,7 @@ def calculate_volume_moving_average(dataframe, window='30D'):
         window: The size of the rolling window used to calculate the moving average.
     
     Returns:
-        True, indicating that the calculation was successful.
+        An tuple containing the name of the column, and a pd.Series holding the data.
     """
     # dataframe['vol_moving_avg'] = (
     column = (
@@ -82,7 +82,7 @@ def calculate_adj_rolling_median(dataframe, window='30D'):
         window: The size of the rolling window used to calculate the rolling median.
     
     Returns:
-        True, indicating that the calculation was successful.
+        An tuple containing the name of the column, and a pd.Series holding the data.
     """
     # dataframe['adj_close_rolling_med'] = (
     column = (

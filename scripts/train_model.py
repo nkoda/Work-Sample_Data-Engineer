@@ -35,16 +35,19 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 def train_model(data):
-    """Trains a gradient boosting regressor model using the provided dataset and returns the trained model, along with its mean absolute error (MAE) and mean squared error (MSE) on a test set.
+    """Trains a gradient boosting regressor model using the provided dataset and returns the 
+    trained model, along with its mean absolute error (MAE) and mean squared error (MSE) on a test set.
 
     Args:
-        data (pandas.DataFrame): A pandas DataFrame containing the dataset. Must include the columns 'Date', 'vol_moving_avg', 'adj_close_rolling_med', and 'Volume'.
+        data (pandas.DataFrame): A pandas DataFrame containing the dataset. Must include the 
+                                 columns 'Date', 'vol_moving_avg', 'adj_close_rolling_med', and 'Volume'.
 
     Returns:
         list: A list containing the trained LightGBM model, its MAE, and its MSE.
 
     Raises:
-        ValueError: If the 'Date', 'vol_moving_avg', 'adj_close_rolling_med', or 'Volume' columns are not present in the input data.
+        ValueError: If the 'Date', 'vol_moving_avg', 'adj_close_rolling_med', or 
+                    'Volume' columns are not present in the input data.
         ValueError: If any NaN values are present in the input data.
 
     Example:
@@ -107,6 +110,9 @@ def read_data(file_name):
     
     Args:
         file_name: The name of the parquet file to read.
+
+    Raises:
+        Exception: If the given parquet cannot be retrieved.
     
     Returns:
         The pandas DataFrame read from the parquet file.
@@ -127,6 +133,9 @@ def save_model(model):
 
     Args:
         model: A trained machine learning model.
+    
+    Raises:
+        Exception: If the model cannot be saved as a joblib file.
 
     Returns:
         None
