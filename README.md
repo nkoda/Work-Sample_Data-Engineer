@@ -7,7 +7,7 @@ The model was trained using LightGBM, an open-source gradient boosting framework
 To improve the runtime for data ingestion and feature engineering, the ThreadPoolExecutor module was used to enable parallel processing of data. This allowed for faster loading of data into memory during the training process. Additionally, a subset of the dataframe was used during the feature engineering to improve runtime by reducing the amount of calculations made.
 
 
-![alt text](https://github.com/nkoda/Work-Sample_Data-Engineer/blob/main/data_pipeline.drawio.svg?raw=true)
+![alt text](https://github.com/nkoda/Work-Sample_Data-Engineer/blob/main/docs/data_pipeline.drawio.svg?raw=true)
 
 
 ## Pipeline Structure and Dependencies
@@ -51,6 +51,9 @@ docker-compose up --build
 ```
 
 3. Access the Airflow web interface at http://localhost:8080 and enable the `data_pipeline` DAG. The login credentials is the string "admin" for both the username and password.
+
+4. Run the pipeline by pressing the trigger button highlighted in red in the image below:
+![alt text](https://github.com/nkoda/Work-Sample_Data-Engineer/blob/main/docs/airflow_server.png?raw=true)
 
 ## Resulting Artifacts
 

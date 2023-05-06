@@ -1,0 +1,24 @@
+2023-05-05 20:25:27,894 - scripts.train_model - INFO - Initializing ML model training process.
+2023-05-05 20:25:27,895 - scripts.train_model - INFO - Attempting to access augmented_data.parquet
+2023-05-05 20:26:48,003 - scripts.train_model - INFO - Successfully retrieved augmented_data.parquet
+2023-05-05 20:26:48,030 - scripts.train_model - INFO - augmented_data.parquet statistics: 
+2023-05-05 20:27:08,058 - scripts.train_model - INFO -                Open          High           Low         Close     Adj Close        Volume  vol_moving_avg  adj_close_rolling_med
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07    2.815143e+07           2.815143e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06    1.113555e+06          -6.256323e+16
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07    1.112907e+07           1.024815e+19
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00    0.000000e+00          -2.264945e+21
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04    1.514762e+04           4.796534e+00
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04    9.460909e+04           1.292000e+01
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05    5.095707e+05           2.933287e+01
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10    2.448850e+09           1.829700e+19
+2023-05-05 20:27:08,061 - scripts.train_model - INFO - Initializing model training.
+2023-05-05 20:27:27,131 - scripts.train_model - INFO - Separating data for training.
+2023-05-05 20:27:33,904 - scripts.train_model - INFO - Instantiating a Gradient Boosting Regressor.
+2023-05-05 20:27:33,913 - scripts.train_model - INFO - Training the model with the data.
+2023-05-05 20:29:19,477 - scripts.train_model - INFO - Assessing model performance.
+2023-05-05 20:29:55,972 - scripts.train_model - INFO - Finished model training.
+2023-05-05 20:29:56,097 - scripts.train_model - INFO - Random Forest Model's Mean Absolute Error: 477836.2696817169
+2023-05-05 20:29:56,098 - scripts.train_model - INFO - Random Forest Model's Mean Squared Error: 46099667067107.914
+2023-05-05 20:29:56,099 - scripts.train_model - INFO - Attempting to save model to /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/../web_api/ml-model
+2023-05-05 20:29:56,299 - scripts.train_model - ERROR - Failed to save ml model to /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/../web_api/ml-model/lightgbm_predictor.joblib. Error - [Errno 2] No such file or directory: 'app/ml-model/lightgbm_predictor.joblib'
+2023-05-05 20:29:56,301 - scripts.train_model - INFO - Finished training model. Elapsed time: 268.41
