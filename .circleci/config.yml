@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@1.5.0
+ python: circleci/python@1.5.0
 
 jobs:
   build-and-test:
@@ -17,30 +17,15 @@ jobs:
           command: pytest
 
   deploy-to-render:
-    docker:
-      - image: cimg/python:3.9.5
+    machine: # executor type
+      image: ubuntu-2004:202010-01 # # recommended linux image - includes Ubuntu 20.04, docker 19.03.13, docker-compose 1.27.4
     steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: requirements_data-pipeline.txt
       - run:
-          name: Install Homebrew
-          command: |
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      - run:
-          name: Install Render CLI
-          command: |
-            brew tap render-oss/render
-            brew install render
-      - run:
-          name: Deploy to Render
-          command: |
-            render authenticate $RENDER_API_KEY
-            render up --path /web_api/app.py
+          name: Run Curl Command
+          command: curl -X GET $RENDER_API_KEY
 
 workflows:
-  sample:
+  test-and-deploy:
     jobs:
       - build-and-test
       - deploy-to-render:
