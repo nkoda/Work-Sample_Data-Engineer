@@ -33,13 +33,15 @@ jobs:
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
             sudo apt-get install build-essential
             brew upgrade
-            brew install deno
             echo 'export DENO_INSTALL="/home/circleci/.deno"' >> ~/.bashrc
             echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
+            git clone git@github.com:render-oss/render-cli.git
+            cd render-cli
             make deps
-            deno task run
+            deno task run --help
             deno compile
             deno --version
+            cd ../
             brew tap render-oss/render
             brew install render
             render authenticate $RENDER_API_KEY
