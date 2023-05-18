@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@1.5.0
+ python: circleci/python@1.5.0
 
 jobs:
   build-and-test:
@@ -18,38 +18,40 @@ jobs:
 
   deploy-to-render:
     docker:
-      - image: homebrew/brew
+      - image: cimg/python:3.9.5
     steps:
-      - attach_workspace:
-          at: /root/.cache/pip
+      - checkout
       - run:
-          name: Install Python 3.9.5
+          name: Install Homebrew
           command: |
-            brew install python@3.9.5
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/marko/.profile
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       - run:
           name: Install Deno
           command: |
-            if ! command -v deno &> /dev/null; then
-              curl -fsSL https://deno.land/x/install/install.sh | sh
-              export DENO_INSTALL="/root/.deno"
-              export PATH="$DENO_INSTALL/bin:$PATH"
-            fi
+            curl -fsSL https://deno.land/x/install/install.sh | sh
+            export DENO_INSTALL="/root/.deno"
+            export PATH="$DENO_INSTALL/bin:$PATH"
+            sudo apt-get install build-essential
+      - python/install-packages:
+          pkg-manager: pip
+          app-dir: ~/web_api/
+          pip-dependency-file: requirements_web-api.txt
       - run:
           name: Install Render CLI
           command: |
-            if ! command -v render &> /dev/null; then
-              brew upgrade
-              brew tap render-oss/render
-              brew install render
-            fi
+            brew upgrade
+            brew tap render-oss/render
+            brew install render
       - run:
           name: Deploy to Render
           command: |
             render authenticate $RENDER_API_KEY
-            render up --path /web_api/app.py
+            render up --path ~/web_api/app.py
 
 workflows:
-  sample:
+  test-and-deploy:
     jobs:
       - build-and-test:
           filters:
