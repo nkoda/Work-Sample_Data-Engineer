@@ -22,9 +22,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Python 3.9.5
+          name: Install Python 3.9
           command: |
-            brew install python@3.9.5
+            brew install python@3.9
       - python/install-packages:
           pkg-manager: pip
           app-dir: /web_api/
