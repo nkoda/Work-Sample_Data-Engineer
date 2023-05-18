@@ -11,7 +11,7 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          pip-dependency-file: requirements_data-pipeline.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
+          pip-dependency-file: requirements_data-pipeline.txt 
       - run:
           name: Run tests
           command: pytest
