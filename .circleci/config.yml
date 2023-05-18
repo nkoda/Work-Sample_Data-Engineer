@@ -25,17 +25,14 @@ jobs:
           pkg-manager: pip
           pip-dependency-file: requirements_data-pipeline.txt
       - run:
-          name: Install Deno
-          command: |
-            curl -fsSL https://deno.land/x/install/install.sh | sh
-            export DENO_INSTALL="/root/.deno"
-            export PATH="$DENO_INSTALL/bin:$PATH"
-      - run:
           name: Install Render CLI
           command: |
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/circleci/.profile
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+            curl -fsSL https://deno.land/x/install/install.sh | sh
+            export DENO_INSTALL="/root/.deno"
+            export PATH="$DENO_INSTALL/bin:$PATH"
             sudo apt-get install build-essential
             brew upgrade
             brew tap render-oss/render
@@ -49,10 +46,8 @@ jobs:
 workflows:
   sample:
     jobs:
-      - build-and-test
-      - deploy-to-render:
-          requires:
-            - build-and-test
+      - build-and-test:
           filters:
             branches:
-              only: production
+              only: main
+      - deploy-to-render
