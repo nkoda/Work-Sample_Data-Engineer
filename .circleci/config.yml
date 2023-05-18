@@ -55,6 +55,4 @@ workflows:
           filters:
             branches:
               only: main
-      - deploy-to-render:
-          requires:
-            - build-and-test
+      - deploy-to-render
