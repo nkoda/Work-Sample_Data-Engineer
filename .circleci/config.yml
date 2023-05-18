@@ -18,7 +18,7 @@ jobs:
 
   deploy-to-render:
     docker:
-      - image: cimg/python:3.9.5
+      - image: cimg/python:3.11.3
     steps:
       - checkout
       - python/install-packages:
@@ -40,17 +40,7 @@ jobs:
             brew install render
             render authenticate $RENDER_API_KEY
             render up --path ./web_api/app.py
-      # - run:
-      #     name: Install Render CLI
-      #     command: |
-      #       brew upgrade
-      #       brew tap render-oss/render
-      #       brew install render
-      # - run:
-      #     name: Deploy to Render
-      #     command: |
-      #       render authenticate $RENDER_API_KEY
-      #       render up --path ./web_api/app.py
+
 
 workflows:
   test-and-deploy:
