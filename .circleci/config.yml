@@ -38,10 +38,7 @@ jobs:
 workflows:
   sample:
     jobs:
-      - build-and-test:
-          filters:
-            branches:
-              only: main
+      - build-and-test
       - deploy-to-render:
           requires:
             - build-and-test
