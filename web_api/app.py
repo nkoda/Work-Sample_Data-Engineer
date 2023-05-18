@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 import concurrent.futures
 import os
+import sys
 
 app = Flask(__name__)
 
@@ -13,12 +14,13 @@ def return_prediction(model, x_hat):
 #loading the ML model
 #path is initially set to shared Docker volume for pipeline reproducibility.
 path = os.path.join('app','ml-models','lightgbm_predictor.joblib')
-if os.path.exists(path):
-    model = joblib.load(path)
-else:
+if not os.path.exists(path):
     #this will default to presaved model for web hosting.
-    model = joblib.load(os.path.join("ml-model", "lightgbm_predictor.joblib"))
+    path = os.path.join("ml-model", "lightgbm_predictor.joblib")
+model = joblib.load(path)
+sys.path.append(path)
 executor = concurrent.futures.ThreadPoolExecutor()
+
 
 # Health check endpoint
 @app.route('/health', methods=['GET'])
