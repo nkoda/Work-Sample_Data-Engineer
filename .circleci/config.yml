@@ -25,6 +25,10 @@ jobs:
           pkg-manager: pip
           pip-dependency-file: requirements_data-pipeline.txt
       - run:
+          name: Install Homebrew
+          command: |
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - run:
           name: Install Render CLI
           command: |
             brew tap render-oss/render
