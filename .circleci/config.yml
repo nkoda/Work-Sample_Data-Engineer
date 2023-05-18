@@ -27,20 +27,21 @@ jobs:
       - run:
           name: Install Render CLI
           command: |
-            git clone git@github.com:render-oss/render-cli.git
-            cd render-cli
-            make deps
-            deno task run --help
+            brew tap render-oss/render
+            brew install render
       - run:
           name: Deploy to Render
           command: |
             render authenticate $RENDER_API_KEY
-            render up --path /path/to/your/app
+            render up --path /web_api/app.py
 
 workflows:
   sample:
     jobs:
-      - build-and-test
+      - build-and-test:
+          filters:
+            branches:
+              only: main
       - deploy-to-render:
           requires:
             - build-and-test
