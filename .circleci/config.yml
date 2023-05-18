@@ -28,24 +28,7 @@ jobs:
       - run:
           name: Deploy Model on Render
           command: |
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/circleci/.profile
-            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            sudo apt-get install build-essential
-            brew upgrade
-            git clone git@github.com:render-oss/render-cli.git
-            cd render-cli
-            make deps
-            deno task run --help
-            deno compile
-            echo 'export DENO_INSTALL="/home/circleci/.deno"' >> ~/.bashrc
-            echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
-            deno --version
-            cd ../
-            brew tap render-oss/render
-            brew install render
-            render authenticate $RENDER_API_KEY
-            render up --path ./web_api/app.py
+            curl -X GET $RENDER_API_KEY
 
 
 workflows:
