@@ -35,6 +35,7 @@ jobs:
             brew upgrade
             brew install deno
             echo 'export PATH="/home/circleci/.deno/bin:$PATH"' >> ~/.bashrc
+            sudo ln -s /home/circleci/.deno/bin/deno /usr/bin
             brew tap render-oss/render
             brew install render
             render authenticate $RENDER_API_KEY
