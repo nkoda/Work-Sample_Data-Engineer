@@ -20,28 +20,28 @@ jobs:
     docker:
       - image: homebrew/brew
     steps:
-      - checkout
+      - attach_workspace:
+          at: /root/.cache/pip
       - run:
-          name: Install Python 3.9
+          name: Install Python 3.9.5
           command: |
-            brew install python@3.9
-      - python/install-packages:
-          pkg-manager: pip
-          app-dir: /web_api/
-          pip-dependency-file: requirements_web-api.txt
+            brew install python@3.9.5
       - run:
           name: Install Deno
           command: |
-            curl -fsSL https://deno.land/x/install/install.sh | sh
-            export DENO_INSTALL="/root/.deno"
-            export PATH="$DENO_INSTALL/bin:$PATH"
-            sudo apt-get install build-essential
+            if ! command -v deno &> /dev/null; then
+              curl -fsSL https://deno.land/x/install/install.sh | sh
+              export DENO_INSTALL="/root/.deno"
+              export PATH="$DENO_INSTALL/bin:$PATH"
+            fi
       - run:
           name: Install Render CLI
           command: |
-            brew upgrade
-            brew tap render-oss/render
-            brew install render
+            if ! command -v render &> /dev/null; then
+              brew upgrade
+              brew tap render-oss/render
+              brew install render
+            fi
       - run:
           name: Deploy to Render
           command: |
@@ -55,4 +55,6 @@ workflows:
           filters:
             branches:
               only: main
-      - deploy-to-render
+      - deploy-to-render:
+          requires:
+            - build-and-test
