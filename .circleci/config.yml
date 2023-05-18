@@ -34,8 +34,7 @@ jobs:
             sudo apt-get install build-essential
             brew upgrade
             brew install deno
-            export DENO_INSTALL="/home/circleci/.deno"
-            export PATH="$DENO_INSTALL/bin:$PATH"
+            echo 'export PATH="/home/circleci/.deno/bin:$PATH"' >> ~/.bashrc
             brew tap render-oss/render
             brew install render
             render authenticate $RENDER_API_KEY
