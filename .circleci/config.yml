@@ -28,7 +28,7 @@ jobs:
           name: Install Homebrew
           command: |
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $BASH_ENV
+            echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/marko/.profile
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       - run:
           name: Install Render CLI
