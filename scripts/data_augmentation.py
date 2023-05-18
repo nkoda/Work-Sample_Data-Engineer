@@ -1,12 +1,17 @@
 import os
+import sys
+# Add the root directory to sys.path
+root_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(root_path)
 import logging
 import time
 import concurrent.futures
 from util.data_handling import import_parquet_as_df, export_df_as_parquet
 
 # data paths for persistence
+current_dir = os.path.dirname(os.path.abspath(__file__))
 from data_ingestion import data_ingestion_output_path
-data_directory = '../data/'
+data_directory = os.path.join(current_dir, '..', 'data')
 data_augmentation_output_path = os.path.join(data_directory, 'training')
 
 # log setups
@@ -21,7 +26,9 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 # add file handler
-log_file_path = '../logs/data_augmentation.log'
+# Construct the path to the logs directory
+logs_dir = os.path.join(current_dir, "../logs")
+log_file_path = os.path.join(logs_dir, "data_augmentation.log")
 fh = logging.FileHandler(log_file_path)
 fh.setLevel(logging.INFO)
 fh.setFormatter(formatter)
@@ -57,7 +64,7 @@ def calculate_volume_moving_average(dataframe, window='30D'):
         window: The size of the rolling window used to calculate the moving average.
     
     Returns:
-        True, indicating that the calculation was successful.
+        An tuple containing the name of the column, and a pd.Series holding the data.
     """
     # dataframe['vol_moving_avg'] = (
     column = (
@@ -79,7 +86,7 @@ def calculate_adj_rolling_median(dataframe, window='30D'):
         window: The size of the rolling window used to calculate the rolling median.
     
     Returns:
-        True, indicating that the calculation was successful.
+        An tuple containing the name of the column, and a pd.Series holding the data.
     """
     # dataframe['adj_close_rolling_med'] = (
     column = (
@@ -104,7 +111,9 @@ def read_data(file_name):
         The pandas DataFrame read from the parquet file.
     """
     try:
-        df = import_parquet_as_df(data_ingestion_output_path, file_name)
+        logger.info(f"Attempting to retrieve {file_name}.parquet")
+        logger.info(f"Path {os.path.exists(os.path.join(data_directory, 'processed'))}")
+        df = import_parquet_as_df('processed', file_name)
         logger.info(f"Successfully retrieved {file_name}.parquet")
         logger.info(f"{file_name}.parquet statistics: ")
         logger.info(df.describe().to_string())
@@ -127,13 +136,24 @@ def save_data(dataframe, file_name):
         None
     """
     try:
+
+        logger.info(f"Attempting to save data as {file_name}.parquet")
         export_df_as_parquet(dataframe, 'training', file_name)
         logger.info(f"Data successfully saved to {file_name}.parquet")
     except Exception as e:
         logger.error(f"Failed to save {file_name}.parquet. Error message: {str(e)}")
         raise e
 
-if __name__ == '__main__':
+def transform_data():
+    """Airflow callable function to initiate data transformation workflow.
+    The workflow consists of reading data >> transform data >> save data as a parquet.
+
+    Raises:
+        Exception: If a data transform has failed.
+
+    Returns:
+        None
+    """
     logger.info("Initializing data augmentation process")
     start_time = time.time()
     df = read_data('preprocessed_data')

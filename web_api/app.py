@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 import joblib
 import numpy as np
 import concurrent.futures
+import os
+import sys
 
 app = Flask(__name__)
 
@@ -10,8 +12,15 @@ def return_prediction(model, x_hat):
     return prediction
 
 #loading the ML model
-model = joblib.load('random-forest_predictor.jolib')
+#path is initially set to shared Docker volume for pipeline reproducibility.
+path = os.path.join('app','ml-models','lightgbm_predictor.joblib')
+if not os.path.exists(path):
+    #this will default to presaved model for web hosting.
+    path = os.path.join("ml-model", "lightgbm_predictor.joblib")
+model = joblib.load(path)
+sys.path.append(path)
 executor = concurrent.futures.ThreadPoolExecutor()
+
 
 # Health check endpoint
 @app.route('/health', methods=['GET'])

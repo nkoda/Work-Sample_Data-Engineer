@@ -1,14 +1,20 @@
+import os
+import sys
+# Add the root directory to sys.path
+root_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(root_path)
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from util.data_handling import import_parquet_as_df
 import lightgbm as lgb
 import joblib
 import logging
-import os
 import time
 
 from data_augmentation import data_augmentation_output_path
-model_destination_path = os.path.join('..','web_api')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+data_directory = os.path.join(dir_path, '..', 'data')
+model_destination_path = os.path.join(dir_path, '..', 'web_api', 'ml-model')
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -22,23 +28,30 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 # add file handler
-log_file_path = '../logs/train_model.log'
+# Get the directory of the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct the path to the logs directory
+logs_dir = os.path.join(current_dir, "../logs")
+log_file_path = os.path.join(logs_dir, "train_model.log")
 fh = logging.FileHandler(log_file_path)
 fh.setLevel(logging.INFO)
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 def train_model(data):
-    """Trains a gradient boosting regressor model using the provided dataset and returns the trained model, along with its mean absolute error (MAE) and mean squared error (MSE) on a test set.
+    """Trains a gradient boosting regressor model using the provided dataset and returns the 
+    trained model, along with its mean absolute error (MAE) and mean squared error (MSE) on a test set.
 
     Args:
-        data (pandas.DataFrame): A pandas DataFrame containing the dataset. Must include the columns 'Date', 'vol_moving_avg', 'adj_close_rolling_med', and 'Volume'.
+        data (pandas.DataFrame): A pandas DataFrame containing the dataset. Must include the 
+                                 columns 'Date', 'vol_moving_avg', 'adj_close_rolling_med', and 'Volume'.
 
     Returns:
         list: A list containing the trained LightGBM model, its MAE, and its MSE.
 
     Raises:
-        ValueError: If the 'Date', 'vol_moving_avg', 'adj_close_rolling_med', or 'Volume' columns are not present in the input data.
+        ValueError: If the 'Date', 'vol_moving_avg', 'adj_close_rolling_med', or 
+                    'Volume' columns are not present in the input data.
         ValueError: If any NaN values are present in the input data.
 
     Example:
@@ -48,7 +61,7 @@ def train_model(data):
         # Train the model
         model, mae, mse = train_model(data)
     """
-    
+
     logger.info(f"Initializing model training.")
     # Assume `data` is loaded as a Pandas DataFrame
     data.set_index('Date', inplace=True)
@@ -101,6 +114,9 @@ def read_data(file_name):
     
     Args:
         file_name: The name of the parquet file to read.
+
+    Raises:
+        Exception: If the given parquet cannot be retrieved.
     
     Returns:
         The pandas DataFrame read from the parquet file.
@@ -121,13 +137,16 @@ def save_model(model):
 
     Args:
         model: A trained machine learning model.
+    
+    Raises:
+        Exception: If the model cannot be saved as a joblib file.
 
     Returns:
         None
     """
     try:
         logger.info(f"Attempting to save model to {model_destination_path}") 
-        path = os.path.join(model_destination_path, 'random-forest_predictor.jolib')
+        path = os.path.join(model_destination_path, 'lightgbm_predictor.joblib')
         with open(path, 'wb') as f:
             joblib.dump(model, f)
     except Exception as e:
@@ -148,7 +167,12 @@ def log_model_metrics(mae, mse):
     logger.info(f"Random Forest Model's Mean Absolute Error: {mae}")
     logger.info(f"Random Forest Model's Mean Squared Error: {mse}")
 
-if __name__ == '__main__':
+def deploy_model():
+    """Airflow callable function to train then deploy model.
+
+    Returns:
+        None
+    """
     logger.info("Initializing ML model training process.")
     start_time = time.time()
     dataframe = read_data('augmented_data')
