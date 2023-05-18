@@ -1,0 +1,129 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.5, pytest-7.1.1, pluggy-1.0.0
+rootdir: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/tests
+plugins: anyio-3.5.0, cov-3.0.0
+collected 5 items
+
+test_data_handling.py FF.F.                                              [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_path ___________________________________
+
+csv_fixture = '/Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/tests/../data/test_data/toy-etf.csv'
+
+    def test_path(csv_fixture):
+>       assert path('test_data', 'toy-etf.csv', '.csv') == os.path.join(data_directory, 'test_data', 'toy-etf.csv')
+E       AssertionError: assert '/Users/nikko...y-etf.csv.csv' == '/Users/nikko...a/toy-etf.csv'
+E         Skipping 78 identical leading characters in diff, use -v to show
+E         - -Engineer/tests/../data/test_data/toy-etf.csv
+E         ?           --
+E         + -Engineer/scripts/util/../../data/test_data/toy-etf.csv.csv
+E         ?            ++++  ++++++++                              ++++
+
+test_data_handling.py:87: AssertionError
+____________________________ test_import_csv_as_df _____________________________
+
+csv_fixture = '/Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/tests/../data/test_data/toy-etf.csv'
+
+    def test_import_csv_as_df(csv_fixture):
+>       df = import_csv_as_df('test_data', 'test_data')
+
+test_data_handling.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../scripts/util/data_handling.py:42: in import_csv_as_df
+    table = csv.read_csv(file_path)
+pyarrow/_csv.pyx:1212: in pyarrow._csv.read_csv
+    ???
+pyarrow/_csv.pyx:1077: in pyarrow._csv._get_reader
+    ???
+pyarrow/io.pxi:1781: in pyarrow.lib.get_input_stream
+    ???
+pyarrow/io.pxi:1752: in pyarrow.lib.get_native_file
+    ???
+pyarrow/io.pxi:995: in pyarrow.lib.OSFile.__cinit__
+    ???
+pyarrow/io.pxi:1005: in pyarrow.lib.OSFile._open_readable
+    ???
+pyarrow/error.pxi:144: in pyarrow.lib.pyarrow_internal_check_status
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   FileNotFoundError: [Errno 2] Failed to open local file '/Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/test_data/test_data.csv'. Detail: [errno 2] No such file or directory
+
+pyarrow/error.pxi:113: FileNotFoundError
+__________________________ test_import_parquet_as_df ___________________________
+
+parquet_fixture = '/Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/tests/../data/test_data/data.parquet'
+
+    def test_import_parquet_as_df(parquet_fixture):
+>       df = import_parquet_as_df('test_data', 'test_data')
+
+test_data_handling.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../scripts/util/data_handling.py:63: in import_parquet_as_df
+    table = parquet.read_table(file_path)
+../../../../../opt/miniconda3/lib/python3.9/site-packages/pyarrow/parquet/core.py:2926: in read_table
+    dataset = _ParquetDatasetV2(
+../../../../../opt/miniconda3/lib/python3.9/site-packages/pyarrow/parquet/core.py:2477: in __init__
+    self._dataset = ds.dataset(path_or_paths, filesystem=filesystem,
+../../../../../opt/miniconda3/lib/python3.9/site-packages/pyarrow/dataset.py:762: in dataset
+    return _filesystem_dataset(source, **kwargs)
+../../../../../opt/miniconda3/lib/python3.9/site-packages/pyarrow/dataset.py:445: in _filesystem_dataset
+    fs, paths_or_selector = _ensure_single_source(source, filesystem)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/test_data/test_data.parquet'
+filesystem = <pyarrow._fs.LocalFileSystem object at 0x7fbd7eec83b0>
+
+    def _ensure_single_source(path, filesystem=None):
+        """
+        Treat path as either a recursively traversable directory or a single file.
+    
+        Parameters
+        ----------
+        path : path-like
+        filesystem : FileSystem or str, optional
+            If an URI is passed, then its path component will act as a prefix for
+            the file paths.
+    
+        Returns
+        -------
+        (FileSystem, list of str or fs.Selector)
+            File system object and either a single item list pointing to a file or
+            an fs.Selector object pointing to a directory.
+    
+        Raises
+        ------
+        TypeError
+            If the passed filesystem has wrong type.
+        FileNotFoundError
+            If the referenced file or directory doesn't exist.
+        """
+        from pyarrow.fs import FileType, FileSelector, _resolve_filesystem_and_path
+    
+        # at this point we already checked that `path` is a path-like
+        filesystem, path = _resolve_filesystem_and_path(path, filesystem)
+    
+        # ensure that the path is normalized before passing to dataset discovery
+        path = filesystem.normalize_path(path)
+    
+        # retrieve the file descriptor
+        file_info = filesystem.get_file_info(path)
+    
+        # depending on the path type either return with a recursive
+        # directory selector or as a list containing a single file
+        if file_info.type == FileType.Directory:
+            paths_or_selector = FileSelector(path, recursive=True)
+        elif file_info.type == FileType.File:
+            paths_or_selector = [path]
+        else:
+>           raise FileNotFoundError(path)
+E           FileNotFoundError: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/test_data/test_data.parquet
+
+../../../../../opt/miniconda3/lib/python3.9/site-packages/pyarrow/dataset.py:421: FileNotFoundError
+=========================== short test summary info ============================
+FAILED test_data_handling.py::test_path - AssertionError: assert '/Users/nikk...
+FAILED test_data_handling.py::test_import_csv_as_df - FileNotFoundError: [Err...
+FAILED test_data_handling.py::test_import_parquet_as_df - FileNotFoundError: ...
+========================= 3 failed, 2 passed in 1.29s ==========================
