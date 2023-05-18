@@ -98,7 +98,6 @@ The following API endpoint is available:
 
 The following improvement suggestions can be made for future iterations of the pipeline:
 
-1. Implement unit tests to validate trustworthiness.
 2. Implement end-to-end testing for the entire pipeline.
 3. Add support for additional data sources.
 4. Improve the performance of the machine learning training step.

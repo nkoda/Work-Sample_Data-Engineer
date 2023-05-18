@@ -44,3 +44,9 @@ max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.8
 2023-05-17 20:46:22,440 - scripts.train_model - INFO - Random Forest Model's Mean Squared Error: 46099667067107.914
 2023-05-17 20:46:22,441 - scripts.train_model - INFO - Attempting to save model to /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/../web_api/ml-model
 2023-05-17 20:46:22,563 - scripts.train_model - INFO - Finished training model. Elapsed time: 231.08
+2023-05-17 22:02:24,455 - scripts.train_model - INFO - Initializing model training.
+2023-05-17 22:02:24,462 - scripts.train_model - INFO - Separating data for training.
+2023-05-17 22:02:24,468 - scripts.train_model - INFO - Instantiating a Gradient Boosting Regressor.
+2023-05-17 22:02:24,468 - scripts.train_model - INFO - Training the model with the data.
+2023-05-17 22:02:24,497 - scripts.train_model - INFO - Assessing model performance.
+2023-05-17 22:02:24,499 - scripts.train_model - INFO - Finished model training.

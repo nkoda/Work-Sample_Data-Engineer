@@ -1,10 +1,14 @@
+import os
+import sys
+# Add the root directory to sys.path
+root_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(root_path)
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from util.data_handling import import_parquet_as_df
 import lightgbm as lgb
 import joblib
 import logging
-import os
 import time
 
 from data_augmentation import data_augmentation_output_path
