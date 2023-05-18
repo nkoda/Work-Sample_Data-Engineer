@@ -19,3 +19,341 @@ max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.8
 2023-05-06 11:02:55,199 - scripts.data_augmentation - INFO - Attempting to save data as augmented_data.parquet
 2023-05-06 11:03:29,643 - scripts.data_augmentation - INFO - Data successfully saved to augmented_data.parquet
 2023-05-06 11:03:29,652 - scripts.data_augmentation - INFO - Data Augmentation complete. Elapsed time: 173.83 seconds
+2023-05-17 20:39:37,853 - scripts.data_augmentation - INFO - Initializing data augmentation process
+2023-05-17 20:39:37,855 - scripts.data_augmentation - INFO - Attempting to retrieve preprocessed_data.parquet
+2023-05-17 20:39:37,856 - scripts.data_augmentation - INFO - Path True
+2023-05-17 20:40:04,071 - scripts.data_augmentation - INFO - Successfully retrieved preprocessed_data.parquet
+2023-05-17 20:40:04,082 - scripts.data_augmentation - INFO - preprocessed_data.parquet statistics: 
+2023-05-17 20:40:17,194 - scripts.data_augmentation - INFO -                Open          High           Low         Close     Adj Close        Volume
+count  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07  2.815108e+07
+mean   2.665302e+06  2.718989e+06  2.597853e+06  2.653941e+06 -6.203860e+16  1.114364e+06
+std    4.935233e+08  5.026950e+08  4.811893e+08  4.912463e+08  1.021661e+19  1.253543e+07
+min    0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -2.380501e+21  0.000000e+00
+25%    7.375000e+00  7.970000e+00  7.690000e+00  7.830000e+00  4.793632e+00  1.010000e+04
+50%    1.710000e+01  1.754000e+01  1.707000e+01  1.731000e+01  1.291911e+01  7.860000e+04
+75%    3.456000e+01  3.521000e+01  3.435000e+01  3.480000e+01  2.935543e+01  4.632000e+05
+max    1.824984e+11  1.824984e+11  1.704780e+11  1.735020e+11  1.883516e+19  1.800000e+10
+2023-05-17 20:40:17,198 - scripts.data_augmentation - INFO - Attempting calculate_volume_moving_average
+2023-05-17 20:40:17,326 - scripts.data_augmentation - INFO - Attempting calculate_adj_rolling_median
+2023-05-17 20:41:15,028 - scripts.data_augmentation - INFO - calculate_volume_moving_average successful
+2023-05-17 20:41:46,861 - scripts.data_augmentation - INFO - calculate_adj_rolling_median successful
+2023-05-17 20:41:53,009 - scripts.data_augmentation - INFO - Attempting to save data as augmented_data.parquet
+2023-05-17 20:42:18,863 - scripts.data_augmentation - INFO - Data successfully saved to augmented_data.parquet
+2023-05-17 20:42:18,870 - scripts.data_augmentation - INFO - Data Augmentation complete. Elapsed time: 161.02 seconds
+2023-05-17 20:55:28,193 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 20:55:28,198 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 20:55:28,582 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 20:55:28,582 - scripts.data_augmentation - INFO - Path True
+2023-05-17 20:55:28,617 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 20:55:28,623 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 20:55:28,653 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 20:57:44,211 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 20:57:44,220 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 20:57:44,579 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 20:57:44,579 - scripts.data_augmentation - INFO - Path True
+2023-05-17 20:57:44,601 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 20:57:44,606 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 20:57:44,627 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 20:59:21,004 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 20:59:21,006 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 20:59:21,376 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 20:59:21,376 - scripts.data_augmentation - INFO - Path True
+2023-05-17 20:59:21,392 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 20:59:21,397 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 20:59:21,401 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 20:59:28,327 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 20:59:28,328 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 20:59:28,680 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 20:59:28,680 - scripts.data_augmentation - INFO - Path True
+2023-05-17 20:59:28,686 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 20:59:28,691 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 20:59:28,693 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:05:20,046 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:05:20,053 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:05:20,451 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:05:20,451 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:05:20,477 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:05:20,483 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:05:20,512 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:07:50,679 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:07:50,685 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:07:50,948 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:07:50,949 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:07:50,986 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:07:50,992 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:07:51,023 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:09:37,189 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:09:37,190 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:09:37,450 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:09:37,450 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:09:37,468 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:09:37,472 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:09:37,475 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:12:22,687 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:12:22,688 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:12:22,936 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:12:22,937 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:12:22,958 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:12:22,962 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:12:22,965 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:15:25,930 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:15:25,936 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:15:26,221 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:15:26,221 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:15:26,244 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:15:26,250 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:15:26,268 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:16:16,582 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:16:16,583 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:16:16,853 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:16:16,853 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:16:16,867 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:16:16,872 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:16:16,874 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:16:27,367 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:16:27,368 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:16:27,615 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:16:27,615 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:16:27,622 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:16:27,626 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:16:27,628 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:18:25,114 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:18:25,115 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:18:25,316 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:18:25,317 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:18:25,337 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:18:25,342 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:18:25,345 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:19:55,847 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:19:55,848 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:19:56,034 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:19:56,035 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:19:56,050 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:19:56,055 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:19:56,057 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:20:22,072 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:20:22,073 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:20:22,087 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:20:22,088 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:20:22,094 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:20:22,202 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:20:22,204 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:24:28,221 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:24:28,222 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:24:28,240 - scripts.data_augmentation - INFO - Attempting to retrieve test_data.parquet
+2023-05-17 21:24:28,241 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:24:28,257 - scripts.data_augmentation - ERROR - Failed to open test_data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/test_data.parquet
+2023-05-17 21:24:28,319 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:24:28,321 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:25:27,896 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:25:27,897 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:25:27,915 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:25:27,916 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:25:27,930 - scripts.data_augmentation - ERROR - Failed to open data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/data.parquet
+2023-05-17 21:25:27,996 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:25:27,999 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:27:50,639 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:27:50,640 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:27:50,658 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:27:50,658 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:27:50,674 - scripts.data_augmentation - ERROR - Failed to open data.parquet. Error message: /Users/nikkoangelo/Documents/interview_takehomes/RiskThinking/Work-Sample_Data-Engineer/scripts/util/../../data/processed/data.parquet
+2023-05-17 21:29:15,829 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:29:15,830 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:29:15,848 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:29:15,848 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:29:15,908 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:29:15,908 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:29:15,917 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:29:29,659 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:29:29,660 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:29:29,677 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:29:29,677 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:29:29,686 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:29:29,686 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:29:29,691 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:30:32,992 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:30:32,993 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:30:33,011 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:30:33,011 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:30:33,022 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:30:33,023 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:30:33,029 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:31:42,341 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:31:42,342 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:31:42,361 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:31:42,361 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:31:42,384 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:31:42,384 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:31:42,390 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:32:05,962 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:32:05,963 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:32:05,981 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:32:05,981 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:32:05,992 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:32:05,992 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:32:05,998 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:32:06,000 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:32:06,002 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:32:38,056 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:32:38,057 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:32:38,076 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:32:38,076 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:32:38,097 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:32:38,097 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:32:38,104 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:32:38,107 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:32:38,109 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:35:07,507 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:35:07,512 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:35:07,587 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:35:07,587 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:35:07,648 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:35:07,648 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:35:07,657 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:35:07,659 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:35:07,661 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:35:07,661 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data_invalid.parquet
+2023-05-17 21:35:07,662 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data_invalid.parquet
+2023-05-17 21:38:22,773 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:38:22,776 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:38:22,825 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:38:22,825 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:38:22,860 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:38:22,860 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:38:22,871 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:38:22,874 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:38:22,876 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:38:22,877 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data_invalid.parquet
+2023-05-17 21:38:22,878 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data_invalid.parquet
+2023-05-17 21:39:33,239 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:39:33,244 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:39:33,296 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:39:33,296 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:39:33,330 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:39:33,330 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:39:33,336 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:39:33,339 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:39:33,340 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:40:29,010 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:40:29,011 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:40:29,031 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:40:29,031 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:40:29,052 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:40:29,052 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:40:29,058 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:40:29,060 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:40:29,062 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:40:42,302 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:40:42,303 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:40:42,323 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:40:42,323 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:40:42,344 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:40:42,344 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:40:42,354 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:40:42,357 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:40:42,359 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet
+2023-05-17 21:43:00,640 - scripts.data_augmentation - INFO - Attempting operation
+2023-05-17 21:43:00,641 - scripts.data_augmentation - INFO - operation successful
+2023-05-17 21:43:00,661 - scripts.data_augmentation - INFO - Attempting to retrieve data.parquet
+2023-05-17 21:43:00,661 - scripts.data_augmentation - INFO - Path True
+2023-05-17 21:43:00,684 - scripts.data_augmentation - INFO - Successfully retrieved data.parquet
+2023-05-17 21:43:00,684 - scripts.data_augmentation - INFO - data.parquet statistics: 
+2023-05-17 21:43:00,691 - scripts.data_augmentation - INFO -             Open       Volume
+count   5.000000     5.000000
+mean   40.144001   320.000000
+std     0.097364   521.536192
+min    40.080002     0.000000
+25%    40.080002     0.000000
+50%    40.080002     0.000000
+75%    40.180000   400.000000
+max    40.299999  1200.000000
+2023-05-17 21:43:00,694 - scripts.data_augmentation - INFO - Attempting to save data as test_save_data.parquet
+2023-05-17 21:43:00,696 - scripts.data_augmentation - INFO - Data successfully saved to test_save_data.parquet

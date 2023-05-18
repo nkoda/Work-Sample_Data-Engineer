@@ -1,4 +1,8 @@
 import os
+import sys
+# Add the root directory to sys.path
+root_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(root_path)
 import pandas as pd
 import concurrent.futures
 from util.data_handling import import_csv_as_df, export_df_as_parquet
