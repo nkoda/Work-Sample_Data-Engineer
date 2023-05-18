@@ -1,0 +1,46 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.5.0
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.9.5
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements_data-pipeline.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
+      - run:
+          name: Run tests
+          command: pytest
+
+  deploy-to-render:
+    docker:
+      - image: cimg/python:3.9.5
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements_data-pipeline.txt
+      - run:
+          name: Install Render CLI
+          command: |
+            curl -ssl https://render.com/install.sh | sh
+      - run: 
+          name: Deploy to Render
+          command: |
+            render authenticate $RENDER_API_KEY
+            render up --path web_api/app.py
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
+      - deploy-to-render:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only: master
