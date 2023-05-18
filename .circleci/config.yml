@@ -28,11 +28,10 @@ jobs:
           name: Install Render CLI
           command: |
             curl -ssl https://render.com/install.sh | sh
-      - run: 
-          name: Deploy to Render
+      - run:
+          name: Install Render CLI
           command: |
-            render authenticate $RENDER_API_KEY
-            render up --path web_api/app.py
+            curl -sSL https://render.com/install.sh | sh
 
 workflows:
   sample:
