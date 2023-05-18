@@ -18,7 +18,7 @@ jobs:
 
   deploy-to-render:
     docker:
-      - image: cimg/python:3.11.3
+      - image: cimg/python:3.9.5
     steps:
       - checkout
       - python/install-packages:
@@ -34,8 +34,8 @@ jobs:
             sudo apt-get install build-essential
             brew upgrade
             brew install deno
-            echo 'export PATH="/home/circleci/.deno/bin:$PATH"' >> ~/.bashrc
-            sudo ln -s /home/circleci/.deno/bin/deno /usr/bin
+            echo 'export DENO_INSTALL="/home/circleci/.deno"' >> ~/.bashrc
+            echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
             brew tap render-oss/render
             brew install render
             render authenticate $RENDER_API_KEY
