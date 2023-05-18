@@ -18,24 +18,19 @@ jobs:
 
   deploy-to-render:
     docker:
-      - image: cimg/python:3.9.5
+      - image: alpine:latest
     steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          app-dir: ./web_api
-          pip-dependency-file: requirements_web-api.txt
       - run:
-          name: Deploy Model on Render
-          command: |
-            curl -X GET $RENDER_API_KEY
-
+          name: Deploy on Render
+          command: curl -X GET $RENDER_API_KEY
 
 workflows:
   test-and-deploy:
     jobs:
-      - build-and-test:
+      - build-and-test
+      - deploy-to-render:
+          requires:
+            - build-and-test
           filters:
             branches:
-              only: main
-      - deploy-to-render
+              only: production
