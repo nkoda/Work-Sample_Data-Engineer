@@ -25,17 +25,20 @@ jobs:
           pkg-manager: pip
           pip-dependency-file: requirements_data-pipeline.txt
       - run:
-          name: Install Homebrew
+          name: Install Render CLI
           command: |
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/circleci/.profile
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+            sudo apt-get install build-essential
             brew upgrade
-      - run:
-          name: Install Render CLI
-          command: |
             brew tap render-oss/render
             brew install render
+      # - run:
+      #     name: Install Render CLI
+      #     command: |
+      #       brew tap render-oss/render
+      #       brew install render
       - run:
           name: Deploy to Render
           command: |
