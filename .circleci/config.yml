@@ -36,7 +36,7 @@ jobs:
             sudo apt-get install build-essential
       - python/install-packages:
           pkg-manager: pip
-          app-dir: /web_api/
+          app-dir: ./web_api
           pip-dependency-file: requirements_web-api.txt
       - run:
           name: Install Render CLI
@@ -48,7 +48,7 @@ jobs:
           name: Deploy to Render
           command: |
             render authenticate $RENDER_API_KEY
-            render up --path /web_api/app.py
+            render up --path ./web_api/app.py
 
 workflows:
   test-and-deploy:
