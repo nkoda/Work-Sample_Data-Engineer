@@ -36,6 +36,9 @@ jobs:
             brew install deno
             echo 'export DENO_INSTALL="/home/circleci/.deno"' >> ~/.bashrc
             echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
+            make deps
+            deno task run
+            deno compile
             deno --version
             brew tap render-oss/render
             brew install render
