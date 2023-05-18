@@ -27,11 +27,15 @@ jobs:
       - run:
           name: Install Render CLI
           command: |
-            curl -ssl https://render.com/install.sh | sh
+            git clone git@github.com:render-oss/render-cli.git
+            cd render-cli
+            make deps
+            deno task run --help
       - run:
-          name: Install Render CLI
+          name: Deploy to Render
           command: |
-            curl -sSL https://render.com/install.sh | sh
+            render authenticate $RENDER_API_KEY
+            render up --path /path/to/your/app
 
 workflows:
   sample:
