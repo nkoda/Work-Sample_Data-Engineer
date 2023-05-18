@@ -31,9 +31,11 @@ jobs:
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/circleci/.profile
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            brew install deno
             sudo apt-get install build-essential
             brew upgrade
+            brew install deno
+            export DENO_INSTALL="/home/circleci/.deno"
+            export PATH="$DENO_INSTALL/bin:$PATH"
             brew tap render-oss/render
             brew install render
             render authenticate $RENDER_API_KEY
