@@ -17,28 +17,32 @@ jobs:
           command: pytest
 
   deploy-to-render:
-    docker:
-      - image: cimg/python:3.9.5
+    machine:
+      image: cimg/python:3.9.5
     steps:
       - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: requirements_data-pipeline.txt
+      - setup_remote_docker:
+          version: 20.10.7
+      - run:
+          name: Install Homebrew
+          command: |
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.profile
+      - run:
+          name: Install Deno
+          command: |
+            curl -fsSL https://deno.land/x/install/install.sh | sh
+            export DENO_INSTALL="/root/.deno"
+            export PATH="$DENO_INSTALL/bin:$PATH"
       - run:
           name: Install Render CLI
           command: |
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/circleci/.profile
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            sudo apt-get install build-essential
-            brew upgrade
             brew tap render-oss/render
             brew install render
-      # - run:
-      #     name: Install Render CLI
-      #     command: |
-      #       brew tap render-oss/render
-      #       brew install render
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements_data-pipeline.txt
       - run:
           name: Deploy to Render
           command: |
